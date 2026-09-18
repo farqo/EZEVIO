@@ -12,7 +12,7 @@ export function SiteFooter() {
             <p>
               New project or question? Reach us at{" "}
               <a href="tel:+18144346356">814 434 6356</a>,{" "}
-              <a href="mailto:hello@ezevio.com">hello@ezevio.com</a>, or{" "}
+              <a href="mailto:helloezevio@gmail.com">helloezevio@gmail.com</a>, or{" "}
               <Link href="/contact">/contact</Link>.
             </p>
           </div>

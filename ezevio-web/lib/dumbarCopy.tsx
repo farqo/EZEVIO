@@ -21,11 +21,13 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "Our services",
     body: (
       <>
-        EZEVIO builds SaaS end to end: landing, signup and product flows, dashboards on a
-        real database and the integrations you actually wire in. We’ve shipped sharp
-        marketing sites with waitlists. We’ve also run the full loop: accounts, billing,
-        authenticated app UI. Timeline and price track scope; we write down where the line
-        is before the repo gets busy.
+        We build SaaS products end to end. Landing pages, signup and product flows,
+        dashboards, and the integrations a product needs.
+        <br />
+        <br />
+        We&apos;ve built marketing sites with waitlists. We&apos;ve also built complete
+        products from accounts, billing, and authenticated app UI. We agree on scope,
+        timeline, and price before development starts.
       </>
     ),
   },
@@ -33,11 +35,19 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "Frontend",
     body: (
       <>
-        Interfaces in <Out href="https://nextjs.org">Next.js</Out> and{" "}
-        <Out href="https://react.dev">React</Out>. Marketing pages through logged-in
-        product. Layouts have to read on a phone without inventing a second layout
-        system. We burn down the console warnings we introduced before the repo changes
-        hands. Brand color shows up in type and chrome where it earns space.
+        We pay close attention to the frontend. Every screen, every state, every small
+        interaction is something we look at closely, not just the main flow. This applies
+        across the whole product, from the landing page to the dashboard someone sees after
+        logging in, so the experience feels like one product instead of a few different ones
+        stitched together.
+        <br />
+        <br />
+        This includes how the product looks on a phone. We design and build for mobile as a
+        real part of the product, not an afterthought handled by making things smaller.
+        <br />
+        <br />
+        Brand color, type, and spacing stay consistent everywhere, so the marketing site and
+        the product itself feel like they were made by the same team.
       </>
     ),
   },
@@ -45,13 +55,12 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "Backend",
     body: (
       <>
-        Data and auth usually start on <Out href="https://supabase.com">Supabase</Out> or{" "}
-        <Out href="https://firebase.google.com">Firebase</Out>. Fast to stand up; you keep
-        the keys. When load or compliance outgrows that, we move the heavy pieces toward{" "}
-        <Out href="https://www.mongodb.com">MongoDB</Out>,{" "}
-        <Out href="https://www.cloudflare.com">Cloudflare</Out>, whatever matches the next
-        constraint. We scope migrations so traffic or compliance don’t corner you into
-        throwing away what already shipped.
+        We usually start data and auth on <Out href="https://supabase.com">Supabase</Out> or{" "}
+        <Out href="https://firebase.google.com">Firebase</Out>. Both let us get a working
+        backend running quickly, and the project stays under your own account from the
+        start. If the product later needs more than these can handle — more traffic, or
+        specific compliance requirements — we move the parts that need it to something like
+        MongoDB or Cloudflare, depending on what the situation actually calls for.
       </>
     ),
   },
@@ -59,11 +68,14 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "Payment setup",
     body: (
       <>
-        Checkout, subscriptions, payouts. <Out href="https://stripe.com">Stripe</Out> and{" "}
-        <Out href="https://www.creem.io">Creem</Out> are the usual anchors; other providers
-        when the business model needs them. Test keys, live keys, webhooks, receipts. The
-        path from “buy” to settled money should run without a human tab-completing CSVs
-        every Friday.
+        We set up checkout, subscriptions, and payouts.{" "}
+        <Out href="https://stripe.com">Stripe</Out> and{" "}
+        <Out href="https://www.creem.io">Creem</Out> are what we use most, and we bring in
+        other providers when the business model needs it.
+        <br />
+        <br />
+        This includes test keys, live keys, webhooks, and receipts, so the whole flow works
+        correctly before it&apos;s live.
       </>
     ),
   },
@@ -71,9 +83,9 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "Logo design",
     body: (
       <>
-        When logo is in scope you get a mark and word treatment, vectors, basic lockups,
-        and a short rationale. Enough that the next person dropping it into a site or app
-        store listing isn’t reverse-engineering your taste from a JPEG.
+        If logo design is part of the project, you get a mark, a wordmark, and vector
+        files, along with a few basic lockups (different arrangements for different uses).
+        You also get a short explanation of the thinking behind the design choices.
       </>
     ),
   },
@@ -81,10 +93,29 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "Branding",
     body: (
       <>
-        We dial in how heavy the product reads: density, motion, hierarchy. Dashboards
-        expose weak brand decisions in a week. If you’re renaming or blowing up the
-        visual system, we walk domains, handles, and what shows up in search before
-        anything gets printed or deployed.
+        We think carefully about how the product feels visually — how dense the layout is,
+        how much motion is used, and how the hierarchy of information is set up.
+        <br />
+        <br />
+        A dashboard shows these decisions clearly, because it&apos;s used repeatedly and
+        for longer periods than a marketing page, so we pay close attention to getting this
+        right.
+        <br />
+        <br />
+        If you&apos;re renaming the product or changing its visual identity, we also check
+        things like domain availability, social handles, and how the name performs in
+        search, before finalizing anything.
+      </>
+    ),
+  },
+  {
+    heading: "Social Media",
+    body: (
+      <>
+        We create and manage social media accounts for the product. This includes starting
+        an account from scratch if one doesn&apos;t exist yet. Posts and visuals follow the
+        same brand voice used across the app and marketing site, so the product feels
+        consistent no matter where someone finds it.
       </>
     ),
   },
@@ -92,16 +123,17 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "API setup",
     body: (
       <>
-        REST, webhooks, auth you can rotate, versioning, error payloads that tell someone
-        what broke. Partners and background jobs shouldn’t depend on a curl one-liner
-        nobody documented.
+        We build REST APIs with webhooks, rotatable authentication, versioning, and clear
+        error messages. This makes the API stable and documented, so partners and
+        background jobs aren&apos;t depending on something only one person understands.
         <br />
         <br />
-        For AI we wire what fits: <Out href="https://platform.openai.com">OpenAI</Out>{" "}
-        (GPT-class), <Out href="https://www.anthropic.com">Anthropic</Out> (Claude),{" "}
-        <Out href="https://x.ai">xAI</Out> (Grok), others when latency, bill size,
-        reasoning depth, or guardrails point there. Summaries, classification, routing,
-        assistants, batch jobs, inference wherever the product actually needs it.
+        For AI, we use whichever model fits —{" "}
+        <Out href="https://platform.openai.com">OpenAI</Out>,{" "}
+        <Out href="https://www.anthropic.com">Anthropic</Out>,{" "}
+        <Out href="https://x.ai">xAI</Out>, or others — based on speed, cost, and
+        reasoning needs. This covers summarization, classification, routing, assistants,
+        and batch jobs.
       </>
     ),
   },
@@ -109,10 +141,23 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
     heading: "UI/UX Design",
     body: (
       <>
-        Flows and wireframes land before engineering burns the hours. Dashboard work is
-        empty states, permission holes, the weird Tuesday edge case. Pixel-level UI shows
-        up when sign-off needs real chrome; until then, wireframes carry the risk. Most
-        of the hierarchy lives in forms and tables.
+        Before we build anything, we map out the structure — flows, wireframes, how the
+        screens connect. That&apos;s the blueprint. Engineering starts once that&apos;s
+        settled, so we&apos;re not rebuilding things mid-project because the structure
+        wasn&apos;t worked out first.
+        <br />
+        <br />
+        For dashboards, that means thinking through empty states, permission edge cases,
+        and situations that only show up with real use — most of the actual complexity is
+        in forms and tables, not decoration.
+        <br />
+        <br />
+        Pixel-level design comes once something needs sign-off. Until then, the wireframes
+        carry the structure.
+        <br />
+        <br />
+        We test flows closely so the experience holds up, visually and functionally,
+        across the whole product.
       </>
     ),
     cta: { href: "/work", label: "See our work" },
@@ -125,15 +170,46 @@ export const ABOUT_MEGA_TITLE_LINE2 = "in the craft";
 export const ABOUT_SECTIONS: { heading: string; body: ReactNode }[] = [
   {
     heading: "Small but ambitious",
-    body: "EZEVIO is a small studio. When we own a project, scope, design, and engineering stay with the same people so we are not bouncing tickets between rooms. Auth edge cases, billing bugs, and the rough corners that blow up a launch week sit in the same queue as the hero section.",
+    body: (
+      <>
+        EZEVIO is a small studio. The same people handle scope, design, and engineering on
+        every project, so work doesn&apos;t move between separate teams.
+        <br />
+        <br />
+        This includes the parts that are easy to overlook — authentication edge cases,
+        billing bugs, the issues that tend to surface right before launch. These get the
+        same attention as the visible parts of the product, like the homepage.
+      </>
+    ),
   },
   {
-    heading: "What we actually fix",
-    body: "We fix spacing, copy, dead states, slow paths, and the edge cases that only show up after you have already fixed the first two. We do not ship obvious broken UI because a date moved. We clear stray console warnings before handoff. When something is wrong, we keep working it until it is right.",
+    heading: "What we fix",
+    body: (
+      <>
+        We fix spacing, copy, dead states, and slow-loading pages. We also look for edge
+        cases — the kind of problems that only become visible once the more obvious ones
+        are already fixed.
+        <br />
+        <br />
+        We don&apos;t ship broken UI just because a deadline is close. We clear console
+        warnings and errors before handing a project over. If something isn&apos;t working
+        correctly, we keep fixing it rather than leaving it as is.
+      </>
+    ),
   },
   {
     heading: "Who we work with",
-    body: "There is not one client type. Startups and small teams with something to prove are often the best fit: they push back in a useful way and they need something they can ship. We do poorly when nobody has written down what finished means, because those projects burn time without producing work.",
+    body: (
+      <>
+        There&apos;s no single type of client we work with. Startups and small teams are
+        often a good fit — they tend to push back on decisions in useful ways, and they
+        need something they can actually ship.
+        <br />
+        <br />
+        Projects go worse when there&apos;s no clear definition of what &quot;finished&quot;
+        means. Without that, time gets spent without the project actually moving forward.
+      </>
+    ),
   },
   {
     heading: "Outside the desk",
@@ -147,9 +223,8 @@ export const ABOUT_SECTIONS: { heading: string; body: ReactNode }[] = [
         >
           Mahmoud Alhabib
         </a>
-        . Outside work he trains for marathons and ultras, with early mornings and steady
-        mileage toward the next race. He keeps showing up for client projects after launch,
-        not only until the repo changes hands.
+        . Three years in brand design — logo, website, dashboard, mobile app UI and UX —
+        shape how we approach the overall identity on a project.
       </>
     ),
   },
@@ -166,25 +241,25 @@ export const WORK_TILES: {
 }[] = [
   {
     href: "/work/tathor",
-    title: "TATHOR: AI Business Intelligence",
+    title: "TATHOR",
     cardImage: "/poster-card-tathor.svg",
     cardOverlay: "/tathor-logo.svg",
   },
   {
     href: "/work/nuerlo",
-    title: "NUERLO: AI Course Marketplace",
+    title: "NUERLO",
     cardImage: "/blurry-gradient-nuerlo%20(1).svg",
     cardOverlay: "/nuerlo-logo.svg",
   },
+  // {
+  //   href: "/work/branory",
+  //   title: "BRANORY",
+  //   cardImage: "/poster-card-branory-svg.svg",
+  //   cardOverlay: "/branory-logo.svg",
+  // },
   {
-    href: "/work/branory",
-    title: "BRANORY: Food & cuisine restaurant",
-    cardImage: "/poster-card-branory-svg.svg",
-    cardOverlay: "/branory-logo.svg",
-  },
-  {
-    href: "/work/class-ace",
-    title: "GETACED: Assignment & test prep",
+    href: "/work/getaced",
+    title: "GETACED",
     cardImage: "/project-card-getaced.svg",
     cardOverlay: "/getaced-logo.svg",
   },
