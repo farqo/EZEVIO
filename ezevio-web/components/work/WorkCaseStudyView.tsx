@@ -9,21 +9,6 @@ import type {
 
 const PLACEHOLDER = "/work/placeholder-case.svg";
 
-/** Keeps mega titles readable at full scale; prefers breaking at a word. */
-const MEGA_LINE_MAX_CHARS = 34;
-
-function shortenMegaLine(line: string, maxChars = MEGA_LINE_MAX_CHARS): string {
-  const t = line.trim();
-  if (t.length <= maxChars) return t;
-  const slice = t.slice(0, maxChars);
-  const lastSpace = slice.lastIndexOf(" ");
-  const cut =
-    lastSpace > Math.floor(maxChars * 0.35)
-      ? slice.slice(0, lastSpace)
-      : slice.trimEnd();
-  return `${cut.trimEnd()}…`;
-}
-
 /** Same column classes as SplitSection `serviceRevealStep={2}` (Strategy / Design / Results). */
 const SPLIT_REST_HEADING =
   "o-col-12--xlg u-push-6--xlg o-col-6--md o-col-12 dumbar-col-stack";
@@ -61,7 +46,6 @@ function CaseStill({ still }: { still?: WorkCaseStill }) {
 }
 
 function MediaCaptionBlock({ caption }: { caption: WorkCaseMediaCaption }) {
-  const [a, b] = caption.paragraphs;
   return (
     <>
       <div
@@ -72,8 +56,9 @@ function MediaCaptionBlock({ caption }: { caption: WorkCaseMediaCaption }) {
       <div
         className={`${SERVICES_REST_BODY} work-case__media-caption-body`}
       >
-        <p>{a}</p>
-        <p>{b}</p>
+        {caption.paragraphs.map((paragraph, i) => (
+          <p key={i}>{paragraph}</p>
+        ))}
       </div>
     </>
   );
@@ -193,8 +178,7 @@ export function WorkCaseStudyView({ data }: Props) {
         <div className="o-grid content">
           <div className="mega-title-wrap o-col-12--md o-col-12">
             <h1 className="mega-title" data-aos="topleft-hardscale">
-              {shortenMegaLine(data.megaLine1)} —<br />
-              {shortenMegaLine(data.megaLine2)}
+              {data.megaLine1}
             </h1>
           </div>
 

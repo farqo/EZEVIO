@@ -248,11 +248,10 @@ svg {
  */
 @media only screen and (max-width: 63.96875em) {
   header nav .header__logo-mark .header__logo-default,
-  header nav .header__logo-mark .header__logo-transition,
-  .home-header nav .header__logo-mark .header__logo-default,
-  .home-header nav .header__logo-mark .header__logo-transition {
-    height: 20px;
-    width: auto;
+  .home-header nav .header__logo-mark .header__logo-default {
+    /* Match prior bar-mark footprint (was 20px tall at 226×59). */
+    width: 77px;
+    height: auto;
   }
 }
 
@@ -377,7 +376,7 @@ header nav .header__logo,
   color: #ffffff;
 }
 
-/* Logo: full white idle (bar mark); hover crossfades to ezevio-logo-transition.svg */
+/* Logo: full white wordmark */
 header nav .header__logo-mark,
 .home-header nav .header__logo-mark {
   position: relative;
@@ -385,72 +384,32 @@ header nav .header__logo-mark,
   line-height: 0;
 }
 
+/* Widths match the old bar mark (ezevio-logo-2) at each breakpoint so the
+   wordmark doesn’t read larger after the asset swap. */
 header nav .header__logo-mark .header__logo-default,
-header nav .header__logo-mark .header__logo-transition,
-.home-header nav .header__logo-mark .header__logo-default,
-.home-header nav .header__logo-mark .header__logo-transition {
-  height: 13px;
-  width: auto;
+.home-header nav .header__logo-mark .header__logo-default {
+  width: 50px;
+  height: auto;
   display: block;
-  opacity: 1;
-  filter: none;
-  transform: none;
-  transition: opacity 0.45s cubic-bezier(0, 0, 0, 1);
-}
-
-header nav .header__logo-mark .header__logo-transition,
-.home-header nav .header__logo-mark .header__logo-transition {
-  position: absolute;
-  left: 0;
-  top: 0;
-  opacity: 0;
-  pointer-events: none;
-}
-
-header nav .header__logo:hover .header__logo-default,
-header nav .header__logo:focus-visible .header__logo-default,
-.home-header nav .header__logo:hover .header__logo-default,
-.home-header nav .header__logo:focus-visible .header__logo-default {
-  opacity: 0;
-}
-
-header nav .header__logo:hover .header__logo-transition,
-header nav .header__logo:focus-visible .header__logo-transition,
-.home-header nav .header__logo:hover .header__logo-transition,
-.home-header nav .header__logo:focus-visible .header__logo-transition {
-  opacity: 1;
 }
 
 @media only screen and (min-width: 30em) {
   header nav .header__logo-mark .header__logo-default,
-  header nav .header__logo-mark .header__logo-transition,
-  .home-header nav .header__logo-mark .header__logo-default,
-  .home-header nav .header__logo-mark .header__logo-transition {
-    height: 28px;
+  .home-header nav .header__logo-mark .header__logo-default {
+    width: 107px;
   }
 }
 
 @media only screen and (min-width: 64em) {
   header nav .header__logo-mark .header__logo-default,
-  header nav .header__logo-mark .header__logo-transition,
-  .home-header nav .header__logo-mark .header__logo-default,
-  .home-header nav .header__logo-mark .header__logo-transition {
-    height: 32px;
+  .home-header nav .header__logo-mark .header__logo-default {
+    width: 123px;
   }
 }
 
 header nav .header__logo:hover,
 .home-header nav .header__logo:hover {
   color: #ffffff;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  header nav .header__logo-mark .header__logo-default,
-  header nav .header__logo-mark .header__logo-transition,
-  .home-header nav .header__logo-mark .header__logo-default,
-  .home-header nav .header__logo-mark .header__logo-transition {
-    transition-duration: 0.08s;
-  }
 }
 
 header nav .menu-toggle,

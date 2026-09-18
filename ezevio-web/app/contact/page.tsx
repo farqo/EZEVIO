@@ -20,18 +20,18 @@ export default function ContactPage() {
               <p>
                 New work &amp; general inquiries
                 <br />
-                <a href="mailto:hello@ezevio.com">hello@ezevio.com</a>
+                <a href="mailto:helloezevio@gmail.com">helloezevio@gmail.com</a>
                 <br />
                 <a href="tel:+18144346356">814 434 6356</a>
               </p>
               <p>
                 Press &amp; collaborations
                 <br />
-                <a href="mailto:press@ezevio.com">press@ezevio.com</a>
+                <a href="mailto:helloezevio@gmail.com">helloezevio@gmail.com</a>
               </p>
               <p>
-                Freelance / contract availability varies. Say what you need and your
-                timeline in the first note.
+                Freelance / contract availability varies. Tell us what you need and your
+                timeline in the first message.
               </p>
               <p>
                 Company details, contracts, and tax IDs: on request.

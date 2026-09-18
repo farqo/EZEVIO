@@ -48,7 +48,7 @@ export default function PrivacyPage() {
               </p>
               <p>
                 Questions? Contact{" "}
-                <a href="mailto:hello@ezevio.com">hello@ezevio.com</a>.
+                <a href="mailto:helloezevio@gmail.com">helloezevio@gmail.com</a>.
               </p>
             </div>
           </div>
