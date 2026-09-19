@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { InnerPageShell } from "@/components/InnerPageShell";
+import { MoreWork } from "@/components/work/MoreWork";
 import { WorkCaseStudyView } from "@/components/work/WorkCaseStudyView";
 import { getWorkTileBySlug, WORK_TILES } from "@/lib/dumbarCopy";
 import { getWorkCaseStudy } from "@/lib/workCaseStudies";
@@ -39,7 +40,7 @@ export default async function WorkCasePage({ params }: Props) {
   if (study) {
     return (
       <InnerPageShell>
-        <WorkCaseStudyView data={study} />
+        <WorkCaseStudyView data={study} slug={slug} />
       </InnerPageShell>
     );
   }
@@ -55,6 +56,7 @@ export default async function WorkCasePage({ params }: Props) {
                 <Link href="/work">Back to work</Link>
               </p>
             </div>
+            <MoreWork currentHref={`/work/${slug}`} />
           </div>
         </div>
       </div>

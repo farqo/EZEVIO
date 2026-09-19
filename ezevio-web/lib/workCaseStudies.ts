@@ -1,3 +1,5 @@
+import { PRIMAL_CASE_BODY } from "@/lib/primalCaseBody";
+
 /**
  * Inner work pages: mega title, Services, intro, media, Strategy / Design / Results.
  */
@@ -18,6 +20,13 @@ export type WorkCaseBodyItem =
       left: WorkCaseStill;
       right: WorkCaseStill;
       /** Narrative under the pair—what we designed, built, or configured. */
+      caption?: WorkCaseMediaCaption;
+      /** Tighter phone stills (natural height, not full-column portraits). */
+      compact?: boolean;
+    }
+  | {
+      type: "media-triple";
+      items: readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill];
       caption?: WorkCaseMediaCaption;
     }
   | {
@@ -54,13 +63,6 @@ export type WorkCaseStudyData = {
    */
   caseBody?: WorkCaseBodyItem[];
 };
-
-const PLACEHOLDER_MEDIA: [
-  WorkCaseMediaSlot,
-  WorkCaseMediaSlot,
-  WorkCaseMediaSlot,
-  WorkCaseMediaSlot,
-] = ["full", "half", "full", "half"];
 
 const GA = "/work/getaced";
 const TH = "/work/tathor";
@@ -161,10 +163,13 @@ const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
     ),
   },
   {
-    type: "split",
-    heading: "Payment Wall",
-    body: "TODO: Stripe payment wall screenshot not uploaded yet — add stripe-payment-wall.png and replace this placeholder with copy written from the real screen.",
-    serviceRevealStep: 2,
+    type: "media-full",
+    src: `${TH}/stripe-payment-wall.png`,
+    alt: "Tathor Stripe checkout — Business plan summary and payment form",
+    caption: wCap(
+      "Payment Wall",
+      "Checkout is a split screen: plan and price on the left in black — Subscribe to TATHOR BUSINESS at $14.99/month — and Stripe's own payment form on the right, with Apple Pay, Link, and card entry. This is Stripe's hosted checkout, not a custom-built form, so less code to maintain and a payment flow people may already recognize from other products.",
+    ),
   },
   {
     type: "split",
@@ -485,8 +490,7 @@ export const WORK_CASE_STUDIES: Record<string, WorkCaseStudyData> = {
   tathor: {
     megaLine1: "TATHOR",
     megaLine2: "From signals to decisions",
-    servicesLine:
-      "Logo design Branding Figma Frontend Backend Firebase Stripe Railway OpenAI API",
+    servicesLine: "Web, Web app, Logo design, Brand design, API, Software",
     intro:
       "Tathor is a business intelligence and competitor analysis tool. We built the brand and product from the ground up in Figma — the logo, the marketing site, the in-app dashboard, and the API — then wired billing through Stripe. Below is the build in order: the landing experience first, then the product suite pages, the dashboard, and the API and billing setup underneath it.",
     strategy:
@@ -501,7 +505,7 @@ export const WORK_CASE_STUDIES: Record<string, WorkCaseStudyData> = {
   nuerlo: {
     megaLine1: "NUERLO",
     megaLine2: "AI courses, one marketplace",
-    servicesLine: "Branding Frontend Backend Stripe Marketplace Dashboard Blog",
+    servicesLine: "Web, Web app, Logo design, Brand design",
     intro:
       "Nuerlo is an AI course marketplace, built around one idea: AI skills are the new advantage, and most people don't have a fast way into them. We built the brand, the marketing site, the in-app learning dashboard, and Stripe billing, all from scratch.",
     strategy:
@@ -513,25 +517,25 @@ export const WORK_CASE_STUDIES: Record<string, WorkCaseStudyData> = {
     mediaAfter: [null, null, null, null],
     caseBody: NUERLO_CASE_BODY,
   },
-  // branory: {
-  //   megaLine1: "BRANORY",
-  //   megaLine2: "Restaurant presence that reads crisp",
-  //   servicesLine: "Branding Frontend Menu UX Photography direction",
-  //   intro:
-  //     "Branory needed a digital presence that matches the plate: confident, warm, and specific. We built a case for how the brand shows up online—menus, reservations, and story—without turning the site into a generic template swap.",
-  //   strategy:
-  //     "Food brands win on specificity. We pushed copy, section order, and visual rhythm toward signature dishes, hours, and location truth—the details guests check before they commit. Everything else supports those decisions.",
-  //   design:
-  //     "Large imagery, restrained type, and generous spacing mirror how people skim on phones before dinner. Motion is minimal; readability and tap targets are not. The layout flexes for seasonal menus without breaking the grid.",
-  //   results:
-  //     "The implementation stays in the same technical lane as our other launches: performant pages, forms that fail gracefully, and analytics-friendly structure. When photography lands, slots are already defined—swap assets without rebuilding layout.",
-  //   mediaAfter: PLACEHOLDER_MEDIA,
-  // },
+  primal: {
+    megaLine1: "PRIMAL",
+    megaLine2: "Track daily habits",
+    servicesLine: "Web, Mobile app, Logo design, Brand design, Social Media, Software",
+    intro:
+      "PRIMAL is a daily habit tracker: one daily score, habit tracking across categories like sleep, training, and nutrition, friend leaderboards, in-app messaging, on-device Smart Insights, achievements, and a Free/Pro tier. Brand and product design led by EZEVIO; social growth (Instagram, TikTok) run in parallel. Below is the work in the order a person actually experiences these surfaces: the landing page first, then the Figma design work behind it, then Instagram, then TikTok, then the app itself from onboarding through settings.",
+    strategy:
+      "The brand, app, and marketing site were all designed together in Figma first — the icon system, the theme colors, the ad templates — so the same visual language carries from a TikTok video, to the landing page, to the paywall, to the app itself without a break anywhere in between.",
+    design:
+      "Every part of the product uses the same coral-and-dark palette and the same bull mark, but the app itself goes further: the accent color a user picks in Settings changes the icon, the paywall, and key screens together, using the full theme system built out in Figma rather than swapping one color value.",
+    results:
+      "PRIMAL launched with a real marketing site, a nine-step onboarding flow that produces a personalized plan, a habit tracker with friends, leaderboards, in-app messaging, on-device Smart Insights, and 51 achievements, a Free/Pro paywall with specific limits at each tier, and a growing social presence — 3,935 Instagram followers and 676 on TikTok — built on a recurring character-driven content format rather than app screenshots alone.",
+    mediaAfter: [null, null, null, null],
+    caseBody: PRIMAL_CASE_BODY,
+  },
   getaced: {
     megaLine1: "GETACED",
     megaLine2: "Assignments without the scramble",
-    servicesLine:
-      "Logo design Branding UI/UX Creem.io payments Frontend Backend Cloudflare Domain Brand flow Security",
+    servicesLine: "Web, Web app, Logo design, Brand design, API, Software",
     intro:
       "GETACED is a full end-to-end SaaS for assignment and test prep—from logo and brand system through the marketing site, authenticated product, and Creem-powered billing. Below we walk it in ship order: the landing experience first, then the in-app dashboard, then how we wired Creem (products, branding, redirects, webhooks, and APIs) with tight security and infrastructure you can operate in production.",
     strategy:

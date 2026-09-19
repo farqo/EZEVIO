@@ -1,4 +1,5 @@
 import { SplitSection } from "@/components/SplitSection";
+import { MoreWork } from "@/components/work/MoreWork";
 import type {
   WorkCaseBodyItem,
   WorkCaseMediaCaption,
@@ -69,9 +70,46 @@ function MediaRowTwo({
   right,
   dataAos,
   caption,
+  compact = false,
 }: {
   left?: WorkCaseStill;
   right?: WorkCaseStill;
+  dataAos?: string;
+  caption?: WorkCaseMediaCaption;
+  compact?: boolean;
+}) {
+  return (
+    <section
+      className="o-grid work-case__media-section"
+      data-aos={dataAos}
+    >
+      <div className={MEDIA_COL}>
+        <div
+          className={
+            compact
+              ? "work-case__media-pair work-case__media-pair--compact"
+              : "work-case__media-pair"
+          }
+        >
+          <div className="work-case__media-pair__cell">
+            <CaseStill still={left} />
+          </div>
+          <div className="work-case__media-pair__cell">
+            <CaseStill still={right} />
+          </div>
+        </div>
+      </div>
+      {caption ? <MediaCaptionBlock caption={caption} /> : null}
+    </section>
+  );
+}
+
+function MediaRowTriple({
+  items,
+  dataAos,
+  caption,
+}: {
+  items: readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill];
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
 }) {
@@ -81,13 +119,12 @@ function MediaRowTwo({
       data-aos={dataAos}
     >
       <div className={MEDIA_COL}>
-        <div className="work-case__media-pair">
-          <div className="work-case__media-pair__cell">
-            <CaseStill still={left} />
-          </div>
-          <div className="work-case__media-pair__cell">
-            <CaseStill still={right} />
-          </div>
+        <div className="work-case__media-triple">
+          {items.map((still) => (
+            <div key={still.src} className="work-case__media-triple__cell">
+              <CaseStill still={still} />
+            </div>
+          ))}
         </div>
       </div>
       {caption ? <MediaCaptionBlock caption={caption} /> : null}
@@ -150,6 +187,17 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
               right={item.right}
               dataAos={dataAos}
               caption={item.caption}
+              compact={item.compact}
+            />
+          );
+        }
+        if (item.type === "media-triple") {
+          return (
+            <MediaRowTriple
+              key={`triple-${i}`}
+              items={item.items}
+              dataAos={dataAos}
+              caption={item.caption}
             />
           );
         }
@@ -166,9 +214,10 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
   );
 }
 
-type Props = { data: WorkCaseStudyData };
+type Props = { data: WorkCaseStudyData; slug?: string };
 
-export function WorkCaseStudyView({ data }: Props) {
+export function WorkCaseStudyView({ data, slug }: Props) {
+  const moreHref = slug ? `/work/${slug}` : undefined;
   const [m0, m1, m2, m3] = data.mediaAfter;
   const useCaseBody = Boolean(data.caseBody?.length);
 
@@ -236,6 +285,8 @@ export function WorkCaseStudyView({ data }: Props) {
           />
 
           {useCaseBody ? null : <MediaSlot slot={m3} />}
+
+          {moreHref ? <MoreWork currentHref={moreHref} /> : null}
         </div>
       </div>
     </div>

@@ -26,8 +26,21 @@
   display: flex;
 }
 
+.o-col-4 {
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+  flex-basis: 33.33333%;
+  max-width: 33.33333%;
+  display: flex;
+}
+
 @media (min-width: 1024px) {
-  .o-col-12 {
+  .o-col-12,
+  .o-col-4 {
     padding-right: 10px;
     padding-left: 10px;
   }

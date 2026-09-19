@@ -2,9 +2,16 @@
 
 import Link from "next/link";
 import { HeaderLogoMark } from "@/components/HeaderLogoMark";
-import { useEffect, useState, type KeyboardEvent as ReactKeyboardEvent } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  type KeyboardEvent as ReactKeyboardEvent,
+} from "react";
 import { usePathname } from "next/navigation";
 import { SITE_NAV_ITEMS } from "@/lib/siteNav";
+
+const WORK_NAV_HIDDEN = "work-nav-hidden";
 
 function navPathActive(pathname: string, href: string) {
   const p = pathname.replace(/\/$/, "") || "/";
@@ -16,14 +23,33 @@ function navPathActive(pathname: string, href: string) {
   return p === h;
 }
 
+function isWorkCasePath(pathname: string) {
+  const p = pathname.replace(/\/$/, "") || "/";
+  return p.startsWith("/work/") && p !== "/work";
+}
+
+function scrollY() {
+  return (
+    window.scrollY ||
+    document.documentElement.scrollTop ||
+    document.body.scrollTop ||
+    0
+  );
+}
+
 export function InnerHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const lastScrollY = useRef(0);
+  const ticking = useRef(false);
+  const hiddenRef = useRef(false);
 
   useEffect(() => {
     const root = document.documentElement;
     if (menuOpen) {
       root.classList.add("menu-is-open", "no--scroll");
+      root.classList.remove(WORK_NAV_HIDDEN);
+      hiddenRef.current = false;
     } else {
       root.classList.remove("menu-is-open", "no--scroll");
     }
@@ -40,6 +66,50 @@ export function InnerHeader() {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    root.classList.remove(WORK_NAV_HIDDEN);
+    hiddenRef.current = false;
+    lastScrollY.current = scrollY();
+
+    if (!isWorkCasePath(pathname)) return;
+
+    const setHidden = (hidden: boolean) => {
+      if (hiddenRef.current === hidden) return;
+      hiddenRef.current = hidden;
+      root.classList.toggle(WORK_NAV_HIDDEN, hidden);
+    };
+
+    const onScroll = () => {
+      if (ticking.current) return;
+      ticking.current = true;
+      window.requestAnimationFrame(() => {
+        const y = scrollY();
+        const delta = y - lastScrollY.current;
+
+        if (root.classList.contains("menu-is-open") || y < 40) {
+          setHidden(false);
+        } else if (delta > 4) {
+          setHidden(true);
+        } else if (delta < -4) {
+          setHidden(false);
+        }
+
+        lastScrollY.current = y;
+        ticking.current = false;
+      });
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    document.addEventListener("scroll", onScroll, { passive: true, capture: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("scroll", onScroll, true);
+      root.classList.remove(WORK_NAV_HIDDEN);
+      hiddenRef.current = false;
+    };
+  }, [pathname]);
 
   const toggleMenu = () => setMenuOpen((o) => !o);
 

@@ -301,9 +301,22 @@ header,
 
 /*
  * Inner routes: bar defaults to muted gray so links never inherit #fff from `a { color: inherit }`.
+ * Work case studies: html.work-nav-hidden slides the fixed header away while scrolling down.
  */
 header:not(.home-header) {
   color: #868686;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+html.work-nav-hidden header:not(.home-header) {
+  transform: translate3d(0, calc(-100% - 24px), 0);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  header:not(.home-header) {
+    transition-duration: 0.01ms;
+  }
 }
 
 @media only screen and (max-width: 63.96875em) {
@@ -1063,6 +1076,62 @@ section.projects .project [data-project-title] a:hover {
   align-self: stretch;
 }
 
+.work-case__media-pair--compact {
+  justify-items: center;
+}
+
+.work-case__media-pair--compact .work-case__figure--screenshot {
+  background: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.work-case__media-pair--compact .work-case__figure--screenshot .work-case__img {
+  width: auto;
+  max-width: 100%;
+  max-height: min(68vh, 560px);
+  height: auto;
+  object-fit: contain;
+}
+
+.work-case__media-triple {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  align-items: start;
+}
+
+@media only screen and (min-width: 48em) {
+  .work-case__media-triple {
+    gap: 16px;
+  }
+}
+
+.work-case__media-triple__cell {
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-case__media-triple__cell .work-case__figure {
+  flex: 0 0 auto;
+  width: 100%;
+  background: transparent;
+  display: flex;
+  justify-content: center;
+}
+
+.work-case__media-triple__cell .work-case__figure--screenshot .work-case__img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .work-case__media-caption-heading {
   margin-top: 44px;
 }
@@ -1473,20 +1542,34 @@ section.projects .project [data-project-title] a:hover {
 }
 
 .t-work .project-link figure .work-card-filler {
+  position: relative;
   width: 100%;
   max-width: 100%;
   display: block;
+  overflow: hidden;
   background-color: #e2e2e2;
   box-sizing: border-box;
 }
 
 .t-work .project-link figure .work-card-thumb {
-  height: auto;
-  background-color: transparent;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  aspect-ratio: unset;
   object-fit: cover;
   object-position: center;
   pointer-events: none;
   user-select: none;
+  background-color: transparent;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .t-work .project-link figure .work-card-gradient-svg animate {
+    display: none;
+  }
 }
 
 /* Centered logo/mark on gradient (or similar) cards */
@@ -1504,6 +1587,79 @@ section.projects .project [data-project-title] a:hover {
   pointer-events: none;
   user-select: none;
   background: transparent;
+}
+
+.t-work .project-link figure img.work-card-overlay--large {
+  width: min(92%, 22rem);
+  max-height: 82%;
+}
+
+.work-case__more {
+  width: 100%;
+  margin-top: 56px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+@media only screen and (min-width: 64em) {
+  .work-case__more {
+    margin-top: 80px;
+  }
+}
+
+.work-case__more-heading {
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.work-case__more-heading h3 {
+  font-size: 15px;
+  color: #ffffff;
+  margin: 0 0 15px;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 480px) {
+  .work-case__more-heading h3 {
+    font-size: calc(15px + 5 * (100vw - 480px) / 760);
+  }
+}
+
+@media screen and (min-width: 1240px) {
+  .work-case__more-heading h3 {
+    font-size: 20px;
+  }
+}
+
+.work-case__more.t-work .project-link {
+  margin-bottom: 0;
+}
+
+.work-case__more.t-work .project-link > a {
+  display: block;
+  width: 100%;
+}
+
+.work-case__more.t-work .project-link .figure-video {
+  margin-bottom: 10px;
+}
+
+@media only screen and (min-width: 64em) {
+  .work-case__more.t-work .project-link .figure-video {
+    margin-bottom: 12px;
+  }
+}
+
+.work-case__more.t-work .project-link figure figcaption {
+  padding-top: 8px;
+}
+
+.work-case__more.t-work .project-link figure img.work-card-overlay {
+  width: min(70%, 8.5rem);
+}
+
+.work-case__more.t-work .project-link figure img.work-card-overlay--large {
+  width: min(92%, 12rem);
 }
 
 .t-work .project-link figure .videogif {
