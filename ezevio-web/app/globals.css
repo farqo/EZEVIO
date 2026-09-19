@@ -1534,7 +1534,7 @@ section.projects .project [data-project-title] a:hover {
 
 .t-work .project-link figure .work-card-filler,
 .t-work .project-link figure video,
-.t-work .project-link figure img,
+.t-work .project-link figure img:not(.work-card-overlay),
 .t-work .project-link figure picture,
 .t-work .project-link figure .videogif {
   aspect-ratio: 4/5;
@@ -1566,14 +1566,8 @@ section.projects .project [data-project-title] a:hover {
   display: block;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .t-work .project-link figure .work-card-gradient-svg animate {
-    display: none;
-  }
-}
-
-/* Centered logo/mark on gradient (or similar) cards */
-.t-work .project-link figure img.work-card-overlay {
+/* Centered logo/mark on the card art (not the caption). */
+.t-work .project-link figure .work-card-filler img.work-card-overlay {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -1589,7 +1583,7 @@ section.projects .project [data-project-title] a:hover {
   background: transparent;
 }
 
-.t-work .project-link figure img.work-card-overlay--large {
+.t-work .project-link figure .work-card-filler img.work-card-overlay--large {
   width: min(92%, 22rem);
   max-height: 82%;
 }
@@ -1632,7 +1626,14 @@ section.projects .project [data-project-title] a:hover {
 }
 
 .work-case__more.t-work .project-link {
-  margin-bottom: 0;
+  margin-bottom: 28px;
+  min-width: 0;
+}
+
+@media only screen and (min-width: 48em) {
+  .work-case__more.t-work .project-link {
+    margin-bottom: 0;
+  }
 }
 
 .work-case__more.t-work .project-link > a {
@@ -1654,12 +1655,22 @@ section.projects .project [data-project-title] a:hover {
   padding-top: 8px;
 }
 
-.work-case__more.t-work .project-link figure img.work-card-overlay {
-  width: min(70%, 8.5rem);
+.work-case__more.t-work .project-link figure .work-card-filler img.work-card-overlay {
+  width: min(70%, 13.5rem);
 }
 
-.work-case__more.t-work .project-link figure img.work-card-overlay--large {
-  width: min(92%, 12rem);
+.work-case__more.t-work .project-link figure .work-card-filler img.work-card-overlay--large {
+  width: min(92%, 22rem);
+}
+
+@media only screen and (min-width: 48em) {
+  .work-case__more.t-work .project-link figure .work-card-filler img.work-card-overlay {
+    width: min(70%, 8.5rem);
+  }
+
+  .work-case__more.t-work .project-link figure .work-card-filler img.work-card-overlay--large {
+    width: min(92%, 12rem);
+  }
 }
 
 .t-work .project-link figure .videogif {

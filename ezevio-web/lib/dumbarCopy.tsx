@@ -230,11 +230,6 @@ export const ABOUT_SECTIONS: { heading: string; body: ReactNode }[] = [
   },
 ];
 
-export type WorkCardGradientSpec = {
-  base: string;
-  blobs: { cx: number; cy: number; fill: string }[];
-};
-
 /** Work index: titles + routes for `/work` and `/work/[slug]`. */
 export const WORK_TILES: {
   href: string;
@@ -243,7 +238,6 @@ export const WORK_TILES: {
   caption?: string;
   /** Art for `/work` index tile (same frame as former gray placeholder). */
   cardImage: string;
-  cardGradient?: WorkCardGradientSpec;
   /** Optional mark centered on the card (e.g. logo on gradient). */
   cardOverlay?: string;
   cardOverlayLarge?: boolean;
@@ -254,17 +248,6 @@ export const WORK_TILES: {
     caption:
       "PRIMAL — (Web, Mobile app, Logo design, Brand design, Social Media, Software)",
     cardImage: "/poster-card-tathor.svg",
-    cardGradient: {
-      base: "#C084FC",
-      blobs: [
-        { cx: 517, cy: 716, fill: "#3B0764" },
-        { cx: 561, cy: 359, fill: "#C084FC" },
-        { cx: 287, cy: 617, fill: "#3B0764" },
-        { cx: 141, cy: 361, fill: "#3B0764" },
-        { cx: 62, cy: 546, fill: "#C084FC" },
-        { cx: 278, cy: 834, fill: "#3B0764" },
-      ],
-    },
     cardOverlay: "/PRIMAL%20LOGO%20PNG.png",
     cardOverlayLarge: true,
   },
@@ -273,17 +256,6 @@ export const WORK_TILES: {
     title: "GETACED",
     caption: "GETACED — (Web, Web app, Logo design, Brand design, API, Software)",
     cardImage: "/blurry-gradient-nuerlo%20(1).svg",
-    cardGradient: {
-      base: "#8A4DFF",
-      blobs: [
-        { cx: 195, cy: 734, fill: "#2B1055" },
-        { cx: 417, cy: 759, fill: "#8A4DFF" },
-        { cx: 495, cy: 586, fill: "#2B1055" },
-        { cx: 674, cy: 26, fill: "#2B1055" },
-        { cx: 158, cy: 337, fill: "#8A4DFF" },
-        { cx: 20, cy: 38, fill: "#2B1055" },
-      ],
-    },
     cardOverlay: "/getaced-logo.svg",
   },
   {
@@ -291,17 +263,6 @@ export const WORK_TILES: {
     title: "TATHOR",
     caption: "TATHOR — (Web, Web app, Logo design, Brand design, API, Software)",
     cardImage: "/poster-card-branory-svg.svg",
-    cardGradient: {
-      base: "#8B5CF6",
-      blobs: [
-        { cx: 669, cy: 31, fill: "#B09CFB" },
-        { cx: 271, cy: 739, fill: "#8B5CF6" },
-        { cx: 622, cy: 571, fill: "#B09CFB" },
-        { cx: 580, cy: 389, fill: "#B09CFB" },
-        { cx: 279, cy: 221, fill: "#8B5CF6" },
-        { cx: 321, cy: 485, fill: "#B09CFB" },
-      ],
-    },
     cardOverlay: "/tathor-logo.svg",
   },
   {
@@ -309,17 +270,6 @@ export const WORK_TILES: {
     title: "NUERLO",
     caption: "NUERLO — (Web, Web app, Logo design, Brand design)",
     cardImage: "/project-card-getaced.svg",
-    cardGradient: {
-      base: "#6C54D9",
-      blobs: [
-        { cx: 591, cy: 509, fill: "#B09CFB" },
-        { cx: 36, cy: 78, fill: "#6C54D9" },
-        { cx: 348, cy: 91, fill: "#B09CFB" },
-        { cx: 602, cy: 282, fill: "#B09CFB" },
-        { cx: 165, cy: 607, fill: "#6C54D9" },
-        { cx: 28, cy: 264, fill: "#B09CFB" },
-      ],
-    },
     cardOverlay: "/nuerlo-logo.svg",
   },
 ];

@@ -1,15 +1,10 @@
-"use client";
-
 import Link from "next/link";
-
-import { WorkCardGradient, type WorkCardGradientSpec } from "@/components/WorkCardGradient";
 
 export type WorkTile = {
   href: string;
   title: string;
   caption?: string;
   cardImage: string;
-  cardGradient?: WorkCardGradientSpec;
   cardOverlay?: string;
   cardOverlayLarge?: boolean;
 };
@@ -33,39 +28,30 @@ export function WorkGrid({
         >
           <Link href={item.href}>
             <figure className="figure-video">
-              <span className="work-card-gradient work-card-filler">
-                {item.cardGradient ? (
-                  <WorkCardGradient
-                    id={item.href.replace(/^\//, "").replace(/\W+/g, "-")}
-                    spec={item.cardGradient}
-                  />
-                ) : (
+              <span className="work-card-filler">
+                {/* eslint-disable-next-line @next/next/no-img-element -- static SVG tiles from /public */}
+                <img
+                  src={item.cardImage}
+                  alt=""
+                  className="work-card-thumb"
+                  draggable={false}
+                />
+                {item.cardOverlay ? (
                   <>
-                    {/* eslint-disable-next-line @next/next/no-img-element -- static SVG tiles from /public */}
+                    {/* eslint-disable-next-line @next/next/no-img-element -- static overlay from /public */}
                     <img
-                      src={item.cardImage}
+                      src={item.cardOverlay}
                       alt=""
-                      className="work-card-thumb"
+                      className={
+                        item.cardOverlayLarge
+                          ? "work-card-overlay work-card-overlay--large"
+                          : "work-card-overlay"
+                      }
                       draggable={false}
                     />
                   </>
-                )}
+                ) : null}
               </span>
-              {item.cardOverlay ? (
-                <>
-                  {/* eslint-disable-next-line @next/next/no-img-element -- static overlay from /public */}
-                  <img
-                    src={item.cardOverlay}
-                    alt=""
-                    className={
-                      item.cardOverlayLarge
-                        ? "work-card-overlay work-card-overlay--large"
-                        : "work-card-overlay"
-                    }
-                    draggable={false}
-                  />
-                </>
-              ) : null}
               <figcaption>
                 <span className="figcaption-caption">
                   {item.caption ?? item.title}

@@ -18,7 +18,7 @@ export function MoreWork({ currentHref }: Props) {
       </div>
       <WorkGrid
         tiles={tiles}
-        itemClassName="project-link work-case__more-tile o-col-4"
+        itemClassName="project-link work-case__more-tile o-col-12 o-col-4--md"
       />
     </section>
   );
