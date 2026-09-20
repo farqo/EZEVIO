@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Out } from "@/lib/outLink";
 
 /** Structural / editorial reference: studiodumbar.com. Swap contact details for your own. */
 
@@ -7,14 +8,6 @@ export type ServiceSection = {
   body: ReactNode;
   cta?: { href: string; label: string };
 };
-
-function Out({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <a href={href} target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
-  );
-}
 
 export const SERVICE_SECTIONS: ServiceSection[] = [
   {
@@ -59,8 +52,10 @@ export const SERVICE_SECTIONS: ServiceSection[] = [
         <Out href="https://firebase.google.com">Firebase</Out>. Both let us get a working
         backend running quickly, and the project stays under your own account from the
         start. If the product later needs more than these can handle — more traffic, or
-        specific compliance requirements — we move the parts that need it to something like
-        MongoDB or Cloudflare, depending on what the situation actually calls for.
+        specific compliance requirements — we move the parts that need it to something like{" "}
+        <Out href="https://www.mongodb.com">MongoDB</Out> or{" "}
+        <Out href="https://www.cloudflare.com">Cloudflare</Out>, depending on what the
+        situation actually calls for.
       </>
     ),
   },

@@ -17,175 +17,59 @@ function still(file: string, alt: string) {
   return { src: `${PM}/${file}`, alt };
 }
 
-/** Landing → Figma → Instagram → TikTok → app onboarding-to-settings. */
+/** Full landing → ads → app appearances → app screens. */
 export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-full",
-    src: `${PM}/Screenshot_2026-09-19_at_5.20.57_PM.png`,
-    alt: "PRIMAL landing hero — coral low-poly background, bull mark, and App Store button",
+    src: `${PM}/build-the-man-you-want-to-be-art.png`,
+    alt: "Build the Man You Want to Be — PRIMAL ad creative",
     caption: wCap(
-      "Hero",
-      "The hero uses a coral, low-poly background with the PRIMAL bull mark and a two-line headline: \"The version of you you've been putting off.\" One line of supporting copy underneath explains the app in a sentence, followed by a single App Store button. The color is loud here on purpose — this is the one screen on the site meant to grab attention before everything else settles into darker, calmer tones.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${PM}/Screenshot_2026-09-19_at_5.21.33_PM.jpg`,
-    alt: "PRIMAL landing — five phone screens showing score, friends, Today, habits, and new habit",
-    caption: wCap(
-      "App showcase",
-      "Five phone screens are shown side by side, each showing a different real screen from the app: the weekly score chart, the friends leaderboard, the Today score circle with a log-progress sheet open, the full habits list, and the new-habit creation screen. Showing five real screens at once, instead of one polished hero shot, is meant to communicate the app has actual depth to it, not just a single feature.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${PM}/Screenshot_2026-09-19_at_5.22.02_PM.jpg`,
-    alt: "PRIMAL landing — Today, Habits, and Insights phones with captions",
-    caption: wCap(
-      "Today / Habits / Insights",
-      "Three phones are shown with a line of caption text under each: the Today screen with the streak and leaderboard, the Habits screen sorted into Remaining and Completed, and the Insights screen with daily and weekly score charts. This is the \"five tabs, one daily score\" section — it's walking through what each part of the app actually does, one screen at a time, instead of describing the app in the abstract.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${PM}/Screenshot_2026-09-19_at_5.22.31_PM.png`,
-    alt: "PRIMAL pricing — Free and Pro cards on coral background",
-    caption: wCap(
-      "Pricing",
-      "Two plans, Free and Pro, shown as dark cards on the coral background. Free lists ten active habits, limited friends and messaging, and 7-day history. Pro, at $4.99/month, raises those limits and adds Plan Tomorrow, unlimited Smart Insights scans, and custom accent colors. Both cards use the same layout, so the comparison is easy to scan without needing a separate table.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.22.46_PM.png",
-      "PRIMAL closing CTA — Ready to be PRIMAL coral card",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.22.52_PM.png",
-      "PRIMAL footer — Product, App, Social, Legal columns and EZEVIO credit",
-    ),
-    caption: wCap(
-      "Closing CTA & Footer",
-      "A single coral card closes out the page: \"Join 240+ people already on PRIMAL,\" followed by \"Ready to be PRIMAL?\" and one button. It repeats the same promise from the hero, once, right before the page ends.",
-      "Four columns — Product, App, Social, Legal — plus the App Store button repeated one more time. Social links go to Instagram, TikTok, YouTube, Threads, and X. The footer also credits EZEVIO as the studio that built the site.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.23.05_PM.png",
-      "PRIMAL waitlist — updating PRIMAL headline and Google form",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.23.23_PM.png",
-      "PRIMAL download page — App Store button and QR code",
-    ),
-    caption: wCap(
-      "Waitlist & Download",
-      "Instead of hiding the fact that the app isn't fully live yet, the site says so directly: \"We're updating PRIMAL... we're patching bugs and tightening the build before the App Store link goes live.\" Underneath is a plain waitlist form — email, optional name — so anyone who wants in gets notified the moment it opens.",
-      "A dedicated download page pairs the App Store button with a QR code, so someone browsing on a laptop can scan straight into the signup flow on their phone instead of having to remember a link.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.23.34_PM.png",
-      "PRIMAL Privacy Policy — account, identity, and habit data",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.23.43_PM.png",
-      "PRIMAL Terms of Service — eligibility and feature list",
-    ),
-    caption: wCap(
-      "Privacy & Terms",
-      "The privacy policy is a real, detailed document — not a placeholder page. It breaks down exactly what's collected: account and identity data (name, email, sign-in provider), and habit and progress data (the habits someone creates, their logs). Email/password accounts require verification before social features like friends and messaging unlock.",
-      "The terms cover eligibility (13+) and spell out exactly what the service includes — daily scores, streaks, achievements, Smart Insights, history limits by plan, Plan Tomorrow, custom accent colors, CSV export. Writing out the full feature list here, not just in marketing copy, means the terms actually match what the product does.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.25.34_PM.png",
-      "Figma — PRIMAL app icon and eight-theme color system",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.26.33_PM.png",
-      "Figma — Build the Man You Want to Be ad creative",
-    ),
-    caption: wCap(
-      "Theme system & ad creative",
-      "This is the working file behind PRIMAL's theming system: every accent color (blue, purple, teal, red, pink, yellow, green, orange) built out as a full matching set — app icon, settings card, paywall panel, launch background — so that when someone picks a color in the app, everything shifts together instead of just one element changing.",
-      "A single ad creative: bold coral type on a dark, faceted background, paired with the app icon and both App Store and Google Play badges. This is one of the pieces used directly in social promotion, not just a design exercise.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.27.03_PM.png",
-      "Figma — Choose Your Style and Create Better Routines ad slideshow",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.28.32_PM.png",
-      "Figma — eight accent-color phone mockups in a grid",
-    ),
-    caption: wCap(
-      "Ad slideshow & theme mockups",
-      "Two promotional slide templates — \"Choose Your Style\" and \"Create Better Routines\" — each showing a row of real app screens under a short headline. These are built to be swapped in as a set (a slideshow), which is also how they show up later in the Instagram content grid.",
-      "All eight accent-color themes rendered on the same phone screen side by side, so the full range of what a user can choose is visible in one image at once — useful both for testing the color system and for using directly in marketing.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.30.26_PM.png",
-      "Instagram @theprimalapp profile — bio, highlights, and follower count",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.30.35_PM.png",
-      "Instagram link hub — website, waitlist, support, and TikTok",
-    ),
-    caption: wCap(
-      "Profile & link hub",
-      "@theprimalapp sits at 3,935 followers on 67 posts, with three pinned highlight reels — Creatives, Be Primal, Themes — sitting right under the bio. The bio itself is a single line: \"The app that helps people build discipline through daily habits.\"",
-      "The profile's link-in-bio opens to four destinations: the PRIMAL website, the waitlist form directly, a support link for questions and bug reports, and TikTok. Routing straight to the waitlist from Instagram, rather than just the homepage, cuts out a step for anyone who's already decided they want in.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${PM}/Screenshot_2026-09-19_at_5.30.43_PM.png`,
-    alt: "Instagram grid — Build the Man You Want to Be pinned post",
-    caption: wCap(
-      "Pinned posts",
-      "The top of the grid is pinned: the \"Build the Man You Want to Be\" ad sits first, so it's the first thing anyone new to the profile sees.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: still(
-      "Screenshot_2026-09-19_at_5.30.50_PM.jpg",
-      "Instagram content grid — goat-mask habit slideshows",
-    ),
-    right: still(
-      "Screenshot_2026-09-19_at_5.30.59_PM.jpg",
-      "Instagram content — goat-mask posts with habit callouts",
-    ),
-    caption: wCap(
-      "Content grid",
-      "Most of the grid is a recurring slideshow format: an anime-style goat-mask character in different real-life settings, paired with a direct callout line — \"If you hide your opinions, seek approval, or overthink everything you say... these 5 habits will help you stop,\" \"You're not tired. You're leaking energy through these 5 habits,\" \"You're afraid of being judged... here are 5 habits to stop caring.\" Each post names a specific, relatable problem before offering habits as the fix, which is a different hook than posting app screenshots directly — it's built to stop someone mid-scroll before they know it's an app ad at all.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${PM}/Screenshot_2026-09-19_at_5.31.11_PM.jpg`,
-    alt: "TikTok @theprimalapp profile and mascot-driven video grid",
-    caption: wCap(
-      "Profile & content",
-      "@theprimalapp on TikTok sits at 676 followers and 7,758 total likes, running the same mascot-driven format as Instagram — videos like \"In Japan, laziness is considered a disease and people treat it with these 7 methods,\" \"You apologize for things that aren't your fault,\" and \"You take everything personally... here are 5 habits to let it go.\" Using the same character and hook style across both platforms means someone who follows on one recognizes the account immediately on the other.",
+      "Ad creative",
+      "This is a banner built around a strong, bold line — \"Build the Man You Want to Be\" — designed for brand recognition across Instagram, Twitter, and the rest of the social stack. Coral type on a dark, faceted ground keeps it loud enough to stop a scroll while still matching the PRIMAL brand, so the same voice shows up wherever the campaign runs.",
     ),
   },
   {
     type: "media-triple",
+    items: [
+      still("group-63.png", "PRIMAL theme mockups — Group 63"),
+      still("group-70.png", "PRIMAL theme mockups — Group 70"),
+      still("group-71.png", "PRIMAL theme mockups — Group 71"),
+    ],
+    caption: wCap(
+      "Ad creative",
+      "We constructed and redesigned multiple ad directions before landing on the final results shown here — artwork that carries the same brand voice and design language as the landing page, while also putting the app itself on screen. That overlap is intentional: the ads, the site, and the product all read as one system, so the campaign and the experience stay in harmony instead of feeling like separate pieces.",
+    ),
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("coral-launch-background.png", "PRIMAL coral launch background"),
+      still("blue-launch-background.png", "PRIMAL blue launch background"),
+      still("purple-launch-background.png", "PRIMAL purple launch background"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("teal-launch-background.png", "PRIMAL teal launch background"),
+      still("pink-launch-background.png", "PRIMAL pink launch background"),
+      still("red-launch-background.png", "PRIMAL red launch background"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("yellow-launch-background.png", "PRIMAL yellow launch background"),
+      still("green-launch-background.png", "PRIMAL green launch background"),
+    ],
+    caption: wCap(
+      "App Appearance",
+      "These are the app appearances available to Pro users — each accent color fully dressed as a launch screen so the product feels custom, not one-note. We laid them out together so the range is easy to see at a glance, and so the same set can be pulled into social ads when we want to show how personal the app can look.",
+    ),
+  },
+  {
+    type: "media-triple",
+    rounded: true,
     items: [
       still(
         "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.32.20.png",
@@ -208,6 +92,7 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   },
   {
     type: "media-triple",
+    rounded: true,
     items: [
       still(
         "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.32.52.png",
@@ -230,6 +115,7 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   },
   {
     type: "media-triple",
+    rounded: true,
     items: [
       still(
         "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.13.png",
@@ -252,6 +138,7 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   },
   {
     type: "media-triple",
+    rounded: true,
     items: [
       still(
         "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.27.png",
@@ -274,6 +161,7 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   },
   {
     type: "media-triple",
+    rounded: true,
     items: [
       still(
         "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.39.png",
@@ -296,6 +184,7 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   },
   {
     type: "media-triple",
+    rounded: true,
     items: [
       still(
         "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.59.png",

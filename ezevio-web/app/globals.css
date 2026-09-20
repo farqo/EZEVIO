@@ -1033,6 +1033,17 @@ section.projects .project [data-project-title] a:hover {
   object-position: unset;
 }
 
+/* App screenshots: fixed phone-style corners (same on desktop and mobile). */
+.work-case__figure--phone {
+  overflow: hidden;
+  border-radius: 22px;
+  background: transparent;
+}
+
+.work-case__figure--phone .work-case__img {
+  border-radius: inherit;
+}
+
 .work-case__img {
   display: block;
   width: 100%;
@@ -1069,7 +1080,7 @@ section.projects .project [data-project-title] a:hover {
   min-height: 0;
 }
 
-/* Do not stretch shorter stills to match the taller column (that caused gray filler). */
+/* Side-by-side screenshots keep natural paired height (assets are size-matched per pair). */
 .work-case__media-pair__cell .work-case__figure--screenshot {
   flex: 0 0 auto;
   min-height: 0;

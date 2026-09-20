@@ -26,8 +26,13 @@ export type WorkCaseBodyItem =
     }
   | {
       type: "media-triple";
-      items: readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill];
+      /** Two or three stills on the same 3-column track (two fills only the first columns). */
+      items:
+        | readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill]
+        | readonly [WorkCaseStill, WorkCaseStill];
       caption?: WorkCaseMediaCaption;
+      /** Soft phone-style corners on each still (app screenshots). */
+      rounded?: boolean;
     }
   | {
       type: "split";
@@ -240,12 +245,18 @@ const NUERLO_CASE_BODY: WorkCaseBodyItem[] = [
     ),
   },
   {
-    type: "media-full",
-    src: `${NL}/create-account.png`,
-    alt: "Nuerlo create account — split purple auth wall with Google sign-in",
+    type: "media-half",
+    left: {
+      src: `${NL}/create-account.png`,
+      alt: "Nuerlo create account — split purple auth wall with Google sign-in",
+    },
+    right: {
+      src: `${NL}/sign-in.jpg`,
+      alt: "Nuerlo sign in — email, password, and Continue with Google",
+    },
     caption: wCap(
       "Sign Up / Sign In",
-      "The account creation screen splits the page: a wavy purple background on the left with the logo, and a white card on the right holding the actual form — email, name, password, plus a \"Continue with Google\" option. A small lock icon and one line of text under the form reminds people not to share their login. It's a standard split-panel layout, but the wave shape in the background keeps it from looking like a generic auth template.",
+      "Create Account and Sign In sit side by side as matching auth screens: the same wavy purple field, the same white form card, and the same Continue with Google option. Create Account adds name alongside email and password; Sign In keeps it to email and password, with remember-me and forgot-password under the fields. A lock line under both reminds people not to share their login — same brand system on both sides of the wall, so signing up and signing back in feel like one product.",
     ),
   },
   {
@@ -301,90 +312,6 @@ const NUERLO_CASE_BODY: WorkCaseBodyItem[] = [
 ];
 
 const GETACED_CASE_BODY: WorkCaseBodyItem[] = [
-  {
-    type: "media-full",
-    src: `${GA}/hero-landing-page.png`,
-    alt: "GETACED marketing hero — headline, mark, and primary call to action",
-    caption: wCap(
-      "Marketing hero",
-      "The hero uses a new logo and mascot with large, bold type that's easy to read at a glance. The layout keeps one clear message and one button, and the purple is used carefully so the page feels calm instead of overwhelming.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: {
-      src: `${GA}/section-landing-page.png`,
-      alt: "GETACED landing page — primary story section",
-    },
-    right: {
-      src: `${GA}/section-2-landing-page.png`,
-      alt: "GETACED landing page — supporting section and value props",
-    },
-    caption: wCap(
-      "Story & proof bands",
-      "The light and dark sections sit side by side so the sign-in explanation and the technical explanation don't compete for attention. Both use the same type and spacing as the rest of the site, and the layout still stacks correctly on mobile.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/login-register-landing-page.png`,
-    alt: "GETACED login and registration — account entry with calm, trustworthy UI",
-    caption: wCap(
-      "Auth & trust",
-      "The sign-in page uses the same headline and mascot as the homepage, so the login screen doesn't feel disconnected from the rest of the site. Form labels and error messages match what the backend actually checks, so users don't hit confusing dead ends.",
-    ),
-  },
-  {
-    type: "media-half",
-    left: {
-      src: `${GA}/pricing-landing-page.png`,
-      alt: "GETACED pricing section — plan comparison",
-    },
-    right: {
-      src: `${GA}/pricing-2-landing-page.png`,
-      alt: "GETACED pricing — continued tiers and detail",
-    },
-    caption: wCap(
-      "Plans & commercial story",
-      "Pricing shows two plans side by side so they're easy to compare without scrolling. Each plan lists what's included and how billing works.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/reviews-landing-page.png`,
-    alt: "GETACED social proof and reviews on the marketing site",
-    caption: wCap(
-      "Social proof",
-      "Reviews are shown as cards with a colored accent bar and a short quote. The colors are the only bright element on the page, so the quotes themselves stand out.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/faq-landing-page.png`,
-    alt: "GETACED FAQ — objections and support paths before signup",
-    caption: wCap(
-      "FAQ & objections",
-      "FAQ answers are kept short and specific, so questions get resolved before signup instead of after.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/final-cta-landing-page.png`,
-    alt: "GETACED closing call-to-action on the landing page",
-    caption: wCap(
-      "Closing conversion",
-      "The closing section repeats the main promise once more, with one button, so there's no ambiguity about what to do next.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/footer-landing-page.png`,
-    alt: "GETACED site footer — navigation, trust, and legal entry points",
-    caption: wCap(
-      "Footer & infrastructure",
-      "The footer includes navigation, social links, and legal pages. Domain, DNS, and Cloudflare are set up so the marketing site and the app run on the same secure, cached infrastructure.",
-    ),
-  },
   {
     type: "media-half",
     left: {
@@ -452,36 +379,12 @@ const GETACED_CASE_BODY: WorkCaseBodyItem[] = [
     ),
   },
   {
-    type: "split",
-    heading: "Creem.io & monetization",
-    body: "We configured Creem end to end: products and pricing, branded checkout banner and logo, success and cancel redirects, webhooks, and API keys scoped for production and test. That ties the Next.js frontend and backend to real entitlements—subscriptions renew, cancellations reconcile, and the app never trusts the client for paid access.",
-    serviceRevealStep: 2,
-  },
-  {
     type: "media-full",
-    src: `${GA}/creem-payment-setup.png`,
-    alt: "GETACED Creem.io dashboard — product, branding, and payment configuration",
+    src: `${GA}/getaced-banner.png`,
+    alt: "GETACED banner — wordmark and graduation mascot",
     caption: wCap(
-      "Products & checkout brand",
-      "Checkout uses the same banner, logo, and colors as the rest of the site, so the payment step still feels like part of GETACED.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/creem-2-payment-setup.png`,
-    alt: "GETACED Creem.io — redirects, domains, and webhook endpoints",
-    caption: wCap(
-      "Redirects & webhooks",
-      "After checkout, users land on a specific page depending on success or cancellation. Webhooks are verified and processed securely, and subscription status is always synced from Creem to the database, not the other way around.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${GA}/creem-3-payment-setup.png`,
-    alt: "GETACED Creem.io — API keys, environments, and integration hardening",
-    caption: wCap(
-      "Keys, environments, security",
-      "Test and live API keys are kept separate, so testing never affects real payments.",
+      "Ad creative",
+      "This is a banner built around a strong, bold mark — the GETACED wordmark with the graduation mascot — designed for brand recognition across Instagram, Twitter, and the rest of the social stack. The same voice and colors as the landing page keep it loud enough to stop a scroll while still reading as GETACED wherever the campaign runs.",
     ),
   },
 ];
@@ -523,6 +426,7 @@ export const WORK_CASE_STUDIES: Record<string, WorkCaseStudyData> = {
     servicesLine: "Web, Mobile app, Logo design, Brand design, Social Media, Software",
     intro:
       "PRIMAL is a daily habit tracker: one daily score, habit tracking across categories like sleep, training, and nutrition, friend leaderboards, in-app messaging, on-device Smart Insights, achievements, and a Free/Pro tier. Brand and product design led by EZEVIO; social growth (Instagram, TikTok) run in parallel. Below is the work in the order a person actually experiences these surfaces: the landing page first, then the Figma design work behind it, then Instagram, then TikTok, then the app itself from onboarding through settings.",
+    heroImage: "/work/primal/landing-full.png",
     strategy:
       "The brand, app, and marketing site were all designed together in Figma first — the icon system, the theme colors, the ad templates — so the same visual language carries from a TikTok video, to the landing page, to the paywall, to the app itself without a break anywhere in between.",
     design:
@@ -538,6 +442,7 @@ export const WORK_CASE_STUDIES: Record<string, WorkCaseStudyData> = {
     servicesLine: "Web, Web app, Logo design, Brand design, API, Software",
     intro:
       "GETACED is a full end-to-end SaaS for assignment and test prep—from logo and brand system through the marketing site, authenticated product, and Creem-powered billing. Below we walk it in ship order: the landing experience first, then the in-app dashboard, then how we wired Creem (products, branding, redirects, webhooks, and APIs) with tight security and infrastructure you can operate in production.",
+    heroImage: "/work/getaced/landing-full.png",
     strategy:
       "We set up the logo, brand direction, and consistent design across every page — hero, pricing, reviews, FAQ, and legal. Domain and DNS were configured cleanly, with Cloudflare handling caching and security so the site stays fast even under traffic spikes.",
     design:

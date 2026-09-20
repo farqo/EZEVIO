@@ -1,5 +1,6 @@
 import { SplitSection } from "@/components/SplitSection";
 import { MoreWork } from "@/components/work/MoreWork";
+import { linkifyTech } from "@/lib/outLink";
 import type {
   WorkCaseBodyItem,
   WorkCaseMediaCaption,
@@ -24,11 +25,17 @@ const SERVICES_REST_BODY =
 
 const MEDIA_COL = "o-col-12--md o-col-12 dumbar-col-stack";
 
-function CaseStill({ still }: { still?: WorkCaseStill }) {
+function CaseStill({
+  still,
+  rounded = false,
+}: {
+  still?: WorkCaseStill;
+  rounded?: boolean;
+}) {
   const isAsset = Boolean(still?.src);
   return (
     <figure
-      className={`work-case__figure${isAsset ? " work-case__figure--screenshot" : ""}`}
+      className={`work-case__figure${isAsset ? " work-case__figure--screenshot" : ""}${rounded ? " work-case__figure--phone" : ""}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- case study assets */}
       <img
@@ -58,7 +65,7 @@ function MediaCaptionBlock({ caption }: { caption: WorkCaseMediaCaption }) {
         className={`${SERVICES_REST_BODY} work-case__media-caption-body`}
       >
         {caption.paragraphs.map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
+          <p key={i}>{linkifyTech(paragraph)}</p>
         ))}
       </div>
     </>
@@ -108,10 +115,14 @@ function MediaRowTriple({
   items,
   dataAos,
   caption,
+  rounded = false,
 }: {
-  items: readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill];
+  items:
+    | readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill]
+    | readonly [WorkCaseStill, WorkCaseStill];
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
+  rounded?: boolean;
 }) {
   return (
     <section
@@ -122,7 +133,7 @@ function MediaRowTriple({
         <div className="work-case__media-triple">
           {items.map((still) => (
             <div key={still.src} className="work-case__media-triple__cell">
-              <CaseStill still={still} />
+              <CaseStill still={still} rounded={rounded} />
             </div>
           ))}
         </div>
@@ -174,7 +185,7 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
           return (
             <SplitSection
               key={`split-${i}`}
-              section={{ heading: item.heading, body: item.body }}
+              section={{ heading: item.heading, body: linkifyTech(item.body) }}
               serviceRevealStep={item.serviceRevealStep ?? 2}
             />
           );
@@ -198,6 +209,7 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
               items={item.items}
               dataAos={dataAos}
               caption={item.caption}
+              rounded={item.rounded}
             />
           );
         }
@@ -248,7 +260,7 @@ export function WorkCaseStudyView({ data, slug }: Props) {
               aria-hidden
             />
             <div className={SPLIT_REST_BODY}>
-              <p>{data.intro}</p>
+              <p>{linkifyTech(data.intro)}</p>
             </div>
           </section>
 
@@ -266,21 +278,21 @@ export function WorkCaseStudyView({ data, slug }: Props) {
           )}
 
           <SplitSection
-            section={{ heading: "Strategy", body: data.strategy }}
+            section={{ heading: "Strategy", body: linkifyTech(data.strategy) }}
             serviceRevealStep={2}
           />
 
           {useCaseBody ? null : <MediaSlot slot={m1} />}
 
           <SplitSection
-            section={{ heading: "Design", body: data.design }}
+            section={{ heading: "Design", body: linkifyTech(data.design) }}
             serviceRevealStep={2}
           />
 
           {useCaseBody ? null : <MediaSlot slot={m2} />}
 
           <SplitSection
-            section={{ heading: "Results", body: data.results }}
+            section={{ heading: "Results", body: linkifyTech(data.results) }}
             serviceRevealStep={2}
           />
 
