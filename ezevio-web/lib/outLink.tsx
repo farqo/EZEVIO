@@ -53,16 +53,22 @@ const TECH_SPLIT = new RegExp(
 
 const HREF_BY_LABEL = new Map(TECH_LINKS.map((t) => [t.match, t.href]));
 
+/** Optional per-page href overrides (e.g. Instagram → PRIMAL account on the PRIMAL case). */
+export type LinkifyHrefOverrides = Readonly<Record<string, string>>;
+
 /**
  * Turn known product / project names in plain body copy into outbound links.
  * Do not use on headings or caption titles.
  */
-export function linkifyTech(text: string): ReactNode {
+export function linkifyTech(
+  text: string,
+  hrefOverrides?: LinkifyHrefOverrides,
+): ReactNode {
   const parts = text.split(TECH_SPLIT);
   if (parts.length === 1) return text;
 
   return parts.map((part, i) => {
-    const href = HREF_BY_LABEL.get(part);
+    const href = hrefOverrides?.[part] ?? HREF_BY_LABEL.get(part);
     if (!href) return part;
     return (
       <Out key={`${part}-${i}`} href={href}>

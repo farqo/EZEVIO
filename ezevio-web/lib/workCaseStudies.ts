@@ -87,7 +87,7 @@ function wCap(
 const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-full",
-    src: `${TH}/hero.png`,
+    src: `${TH}/homepage-hero-search.png`,
     alt: "Tathor homepage hero — chrome wordmark and competitor search field",
     caption: wCap(
       "Hero",
@@ -101,7 +101,7 @@ const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
       alt: "Tathor Product Suite — three cards for core tool, Complete Profiles, and API",
     },
     right: {
-      src: `${TH}/product-suite-continued.png`,
+      src: `${TH}/agents-processing-overview.png`,
       alt: "Tathor agents processing and export checklist",
     },
     caption: wCap(
@@ -113,11 +113,11 @@ const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-half",
     left: {
-      src: `${TH}/build-with-api.png`,
+      src: `${TH}/api-javascript-sample.png`,
       alt: "Tathor Build with API — live JavaScript, Python, and cURL code samples",
     },
     right: {
-      src: `${TH}/latest-news.png`,
+      src: `${TH}/news-listing.png`,
       alt: "Tathor Latest News — press-style entries with halftone imagery",
     },
     caption: wCap(
@@ -129,11 +129,11 @@ const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-half",
     left: {
-      src: `${TH}/pricing-plans.png`,
+      src: `${TH}/pricing-cards.png`,
       alt: "Tathor Pricing Plans — Basic, Business, and Agency tiers",
     },
     right: {
-      src: `${TH}/compare-plans.png`,
+      src: `${TH}/plan-comparison-table.png`,
       alt: "Tathor Compare Plans — feature-by-feature plan comparison table",
     },
     caption: wCap(
@@ -169,7 +169,7 @@ const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
   },
   {
     type: "media-full",
-    src: `${TH}/stripe-payment-wall.png`,
+    src: `${TH}/stripe-checkout.png`,
     alt: "Tathor Stripe checkout — Business plan summary and payment form",
     caption: wCap(
       "Payment Wall",
@@ -426,7 +426,6 @@ export const WORK_CASE_STUDIES: Record<string, WorkCaseStudyData> = {
     servicesLine: "Web, Mobile app, Logo design, Brand design, Social Media, Software",
     intro:
       "PRIMAL is a daily habit tracker: one daily score, habit tracking across categories like sleep, training, and nutrition, friend leaderboards, in-app messaging, on-device Smart Insights, achievements, and a Free/Pro tier. Brand and product design led by EZEVIO; social growth (Instagram, TikTok) run in parallel. Below is the work in the order a person actually experiences these surfaces: the landing page first, then the Figma design work behind it, then Instagram, then TikTok, then the app itself from onboarding through settings.",
-    heroImage: "/work/primal/landing-full.png",
     strategy:
       "The brand, app, and marketing site were all designed together in Figma first — the icon system, the theme colors, the ad templates — so the same visual language carries from a TikTok video, to the landing page, to the paywall, to the app itself without a break anywhere in between.",
     design:

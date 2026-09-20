@@ -218,7 +218,10 @@ export const ABOUT_SECTIONS: { heading: string; body: ReactNode }[] = [
         >
           Mahmoud Alhabib
         </a>
-        . Three years in brand design — logo, website, dashboard, mobile app UI and UX —
+        .
+        <br />
+        <br />
+        Three years in brand design — logo, website, dashboard, mobile app UI and UX —
         shape how we approach the overall identity on a project.
       </>
     ),
@@ -242,30 +245,30 @@ export const WORK_TILES: {
     title: "PRIMAL",
     caption:
       "PRIMAL — (Web, Mobile app, Logo design, Brand design, Social Media, Software)",
-    cardImage: "/poster-card-tathor.svg",
-    cardOverlay: "/PRIMAL%20LOGO%20PNG.png",
+    cardImage: "/project-work-card-1.svg",
+    cardOverlay: "/work/primal/logo.png",
     cardOverlayLarge: true,
   },
   {
     href: "/work/getaced",
     title: "GETACED",
     caption: "GETACED — (Web, Web app, Logo design, Brand design, API, Software)",
-    cardImage: "/blurry-gradient-nuerlo%20(1).svg",
-    cardOverlay: "/getaced-logo.svg",
+    cardImage: "/project-work-card-2.svg",
+    cardOverlay: "/work/getaced/logo.svg",
   },
   {
     href: "/work/tathor",
     title: "TATHOR",
     caption: "TATHOR — (Web, Web app, Logo design, Brand design, API, Software)",
-    cardImage: "/poster-card-branory-svg.svg",
-    cardOverlay: "/tathor-logo.svg",
+    cardImage: "/project-work-card-3.svg",
+    cardOverlay: "/work/tathor/logo.svg",
   },
   {
     href: "/work/nuerlo",
     title: "NUERLO",
     caption: "NUERLO — (Web, Web app, Logo design, Brand design)",
-    cardImage: "/project-card-getaced.svg",
-    cardOverlay: "/nuerlo-logo.svg",
+    cardImage: "/project-work-card-4.svg",
+    cardOverlay: "/work/nuerlo/logo.svg",
   },
 ];
 

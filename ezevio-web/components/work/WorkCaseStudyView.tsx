@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import { SplitSection } from "@/components/SplitSection";
 import { MoreWork } from "@/components/work/MoreWork";
 import { linkifyTech } from "@/lib/outLink";
@@ -24,6 +25,13 @@ const SERVICES_REST_BODY =
   "o-col-6--xlg u-push-6--xlg o-col-6--md o-col-12 dumbar-col-stack";
 
 const MEDIA_COL = "o-col-12--md o-col-12 dumbar-col-stack";
+
+const PRIMAL_SOCIAL_HREFS = {
+  Instagram: "https://www.instagram.com/theprimalapp/",
+  TikTok: "https://www.tiktok.com/@theprimalapp",
+} as const;
+
+type Linkify = (text: string) => ReactNode;
 
 function CaseStill({
   still,
@@ -53,7 +61,13 @@ function CaseStill({
   );
 }
 
-function MediaCaptionBlock({ caption }: { caption: WorkCaseMediaCaption }) {
+function MediaCaptionBlock({
+  caption,
+  linkify,
+}: {
+  caption: WorkCaseMediaCaption;
+  linkify: Linkify;
+}) {
   return (
     <>
       <div
@@ -65,7 +79,7 @@ function MediaCaptionBlock({ caption }: { caption: WorkCaseMediaCaption }) {
         className={`${SERVICES_REST_BODY} work-case__media-caption-body`}
       >
         {caption.paragraphs.map((paragraph, i) => (
-          <p key={i}>{linkifyTech(paragraph)}</p>
+          <p key={i}>{linkify(paragraph)}</p>
         ))}
       </div>
     </>
@@ -78,12 +92,14 @@ function MediaRowTwo({
   dataAos,
   caption,
   compact = false,
+  linkify,
 }: {
   left?: WorkCaseStill;
   right?: WorkCaseStill;
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
   compact?: boolean;
+  linkify: Linkify;
 }) {
   return (
     <section
@@ -106,7 +122,7 @@ function MediaRowTwo({
           </div>
         </div>
       </div>
-      {caption ? <MediaCaptionBlock caption={caption} /> : null}
+      {caption ? <MediaCaptionBlock caption={caption} linkify={linkify} /> : null}
     </section>
   );
 }
@@ -116,6 +132,7 @@ function MediaRowTriple({
   dataAos,
   caption,
   rounded = false,
+  linkify,
 }: {
   items:
     | readonly [WorkCaseStill, WorkCaseStill, WorkCaseStill]
@@ -123,6 +140,7 @@ function MediaRowTriple({
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
   rounded?: boolean;
+  linkify: Linkify;
 }) {
   return (
     <section
@@ -138,7 +156,7 @@ function MediaRowTriple({
           ))}
         </div>
       </div>
-      {caption ? <MediaCaptionBlock caption={caption} /> : null}
+      {caption ? <MediaCaptionBlock caption={caption} linkify={linkify} /> : null}
     </section>
   );
 }
@@ -147,10 +165,12 @@ function MediaRowFull({
   still,
   dataAos,
   caption,
+  linkify,
 }: {
   still?: WorkCaseStill;
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
+  linkify?: Linkify;
 }) {
   return (
     <section
@@ -160,7 +180,9 @@ function MediaRowFull({
       <div className={MEDIA_COL}>
         <CaseStill still={still} />
       </div>
-      {caption ? <MediaCaptionBlock caption={caption} /> : null}
+      {caption && linkify ? (
+        <MediaCaptionBlock caption={caption} linkify={linkify} />
+      ) : null}
     </section>
   );
 }
@@ -169,11 +191,17 @@ function MediaSlot({ slot }: { slot: WorkCaseMediaSlot }) {
   if (slot === "full")
     return <MediaRowFull dataAos="topleft-hardscale-service-step-2" />;
   if (slot === "half")
-    return <MediaRowTwo dataAos="topleft-hardscale-service-step-1" />;
+    return <MediaRowTwo dataAos="topleft-hardscale-service-step-1" linkify={linkifyTech} />;
   return null;
 }
 
-function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
+function CaseBodyList({
+  items,
+  linkify,
+}: {
+  items: WorkCaseBodyItem[];
+  linkify: Linkify;
+}) {
   return (
     <>
       {items.map((item, i) => {
@@ -185,7 +213,7 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
           return (
             <SplitSection
               key={`split-${i}`}
-              section={{ heading: item.heading, body: linkifyTech(item.body) }}
+              section={{ heading: item.heading, body: linkify(item.body) }}
               serviceRevealStep={item.serviceRevealStep ?? 2}
             />
           );
@@ -199,6 +227,7 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
               dataAos={dataAos}
               caption={item.caption}
               compact={item.compact}
+              linkify={linkify}
             />
           );
         }
@@ -210,6 +239,7 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
               dataAos={dataAos}
               caption={item.caption}
               rounded={item.rounded}
+              linkify={linkify}
             />
           );
         }
@@ -219,6 +249,7 @@ function CaseBodyList({ items }: { items: WorkCaseBodyItem[] }) {
             still={{ src: item.src, alt: item.alt }}
             dataAos={dataAos}
             caption={item.caption}
+            linkify={linkify}
           />
         );
       })}
@@ -232,6 +263,8 @@ export function WorkCaseStudyView({ data, slug }: Props) {
   const moreHref = slug ? `/work/${slug}` : undefined;
   const [m0, m1, m2, m3] = data.mediaAfter;
   const useCaseBody = Boolean(data.caseBody?.length);
+  const linkify: Linkify = (text) =>
+    linkifyTech(text, slug === "primal" ? PRIMAL_SOCIAL_HREFS : undefined);
 
   return (
     <div className="t-default t-about work-case">
@@ -260,7 +293,7 @@ export function WorkCaseStudyView({ data, slug }: Props) {
               aria-hidden
             />
             <div className={SPLIT_REST_BODY}>
-              <p>{linkifyTech(data.intro)}</p>
+              <p>{linkify(data.intro)}</p>
             </div>
           </section>
 
@@ -272,27 +305,27 @@ export function WorkCaseStudyView({ data, slug }: Props) {
           ) : null}
 
           {useCaseBody && data.caseBody ? (
-            <CaseBodyList items={data.caseBody} />
+            <CaseBodyList items={data.caseBody} linkify={linkify} />
           ) : (
             <MediaSlot slot={m0} />
           )}
 
           <SplitSection
-            section={{ heading: "Strategy", body: linkifyTech(data.strategy) }}
+            section={{ heading: "Strategy", body: linkify(data.strategy) }}
             serviceRevealStep={2}
           />
 
           {useCaseBody ? null : <MediaSlot slot={m1} />}
 
           <SplitSection
-            section={{ heading: "Design", body: linkifyTech(data.design) }}
+            section={{ heading: "Design", body: linkify(data.design) }}
             serviceRevealStep={2}
           />
 
           {useCaseBody ? null : <MediaSlot slot={m2} />}
 
           <SplitSection
-            section={{ heading: "Results", body: linkifyTech(data.results) }}
+            section={{ heading: "Results", body: linkify(data.results) }}
             serviceRevealStep={2}
           />
 

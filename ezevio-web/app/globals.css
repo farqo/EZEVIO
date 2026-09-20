@@ -1031,6 +1031,9 @@ section.projects .project [data-project-title] a:hover {
   max-height: none;
   object-fit: unset;
   object-position: unset;
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* App screenshots: fixed phone-style corners (same on desktop and mobile). */

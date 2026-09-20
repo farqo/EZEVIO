@@ -17,8 +17,48 @@ function still(file: string, alt: string) {
   return { src: `${PM}/${file}`, alt };
 }
 
-/** Full landing → ads → app appearances → app screens. */
+/** Full landing → site pages → ads → app appearances → app screens. */
 export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
+  {
+    type: "media-full",
+    src: `${PM}/landing-full.png`,
+    alt: "PRIMAL marketing site — full landing page",
+    caption: wCap(
+      "Landing page",
+      "We spent time on this — multiple layout and copy passes — until the marketing site felt like one page instead of a stack of sections. Type, color, and the bull mark stay consistent from the hero through pricing and the waitlist, so the brand message and voice don't drop off halfway down.",
+      "Section transitions and lazy-loaded stills ease each block in as you scroll, which keeps the page moving without fighting the design. What you see here is the full page; on the site itself, those transitions are part of how it reads.",
+    ),
+  },
+  {
+    type: "media-half",
+    left: {
+      src: `${PM}/landing-waitlist.png`,
+      alt: "PRIMAL waitlist page",
+    },
+    right: {
+      src: `${PM}/landing-download.png`,
+      alt: "PRIMAL download page — App Store and Google Play",
+    },
+    caption: wCap(
+      "Waitlist & download",
+      "Separate waitlist and download surfaces keep the path clear — join before launch, or jump straight to the stores once the app is live — without crowding either CTA into the main marketing scroll.",
+    ),
+  },
+  {
+    type: "media-half",
+    left: {
+      src: `${PM}/landing-privacy.png`,
+      alt: "PRIMAL privacy policy page",
+    },
+    right: {
+      src: `${PM}/landing-terms.png`,
+      alt: "PRIMAL terms of service page",
+    },
+    caption: wCap(
+      "Privacy & terms",
+      "We went through several versions of Privacy and Terms while building the app — updating the language as features landed so the legal pages stay current and actually pair with what PRIMAL does, instead of drifting into generic boilerplate.",
+    ),
+  },
   {
     type: "media-full",
     src: `${PM}/build-the-man-you-want-to-be-art.png`,
@@ -31,9 +71,9 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-triple",
     items: [
-      still("group-63.png", "PRIMAL theme mockups — Group 63"),
-      still("group-70.png", "PRIMAL theme mockups — Group 70"),
-      still("group-71.png", "PRIMAL theme mockups — Group 71"),
+      still("ad-choose-your-style.png", "PRIMAL ad — Choose Your Style theme mockups"),
+      still("ad-create-better-routines.png", "PRIMAL ad — Create Better Routines habit screens"),
+      still("ad-daily-score.png", "PRIMAL ad — daily score hero"),
     ],
     caption: wCap(
       "Ad creative",
@@ -72,15 +112,15 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
     rounded: true,
     items: [
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.32.20.png",
+        "app-launch-screen.png",
         "PRIMAL app launch screen — coral background, bull mark, Get Started",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.32.37.png",
+        "onboarding-goal-selection.png",
         "PRIMAL onboarding — main goal selection",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.32.48.png",
+        "onboarding-calculated-plan.png",
         "PRIMAL onboarding — calculated calorie, protein, training, and hydration plan",
       ),
     ],
@@ -95,22 +135,22 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
     rounded: true,
     items: [
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.32.52.png",
+        "sign-in-apple-google.png",
         "PRIMAL sign-in — Continue with Apple and Continue with Google",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.33.45.png",
+        "google-oauth-consent.png",
         "Google OAuth consent screen for PRIMAL",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.06.png",
+        "pro-paywall.png",
         "PRIMAL Pro paywall — feature tiles and Monthly vs Annual",
       ),
     ],
     caption: wCap(
       "Sign-in & paywall",
-      "\"Almost there. Save your plan and start your streak.\" Two sign-in options, Apple and Google, with a line underneath clarifying \"Nothing is shared without your permission.\" Putting sign-in after the plan is built, not before, means someone has already invested a few minutes and seen a concrete result before being asked to create an account. The Google OAuth screen shows exactly what PRIMAL requests: name, profile picture, and email, with Privacy Policy and Terms of Service links on the consent screen itself.",
-      "PRIMAL Pro is laid out as six feature tiles — full history access, plan tomorrow's habits, custom app appearance, higher habit limit, more friends, higher message limit — each with a one-line explanation, followed by Monthly and Annual pricing options. Every claim on this screen is a specific number (50 habits vs. 10, 500 messages vs. 50), not a vague \"unlock more.\"",
+      "We stepped away from a create-your-own-account flow inside the app and leaned on Google and Apple as the sign-in and sign-up providers. That keeps users from forgetting another password, cuts the risk of a password breach on our side, and takes the stress out of getting in — so the path from plan to account stays smooth.",
+      "The paywall is a polished piece that still uses the same cohesive design language as the rest of the app, with App Store requirements built into the flow rather than bolted on after the fact.",
     ),
   },
   {
@@ -118,22 +158,22 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
     rounded: true,
     items: [
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.13.png",
+        "first-step-achievement.png",
         "PRIMAL First Step achievement unlock overlay",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.18.png",
+        "today-tab-daily-score.png",
         "PRIMAL Today tab — circular daily score, stats, and 7-day trend",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.23.png",
+        "today-habits-remaining.png",
         "PRIMAL Today's habits — Calories, Protein, Hydration, Steps with remaining amounts",
       ),
     ],
     caption: wCap(
       "First achievement, home & today's habits",
-      "The very first thing a new user unlocks is the \"First Step\" award, for creating their first habit. It appears as a full-screen badge unlock overlaying the home screen. Giving a reward within the first minute, for the smallest possible action, is what turns \"creating a habit\" into something that feels like progress instead of setup. The Today tab then centers on a large circular score (0–100), with streak, total habits, done, and remaining shown as four stat tiles underneath, and a 7-day trend line below that.",
-      "Each habit — Calories, Protein, Hydration, Steps — is shown with its target and exactly how much is left (\"0 / 2800 cal · 2800 cal left\"), with a quick-add button next to each one. Showing the remaining amount, not just the target, means logging progress doesn't require doing math first.",
+      "Award unlocks went through multiple iterations before we landed on the clean overlay shown in the first image — a full-screen badge that celebrates the \"First Step\" without cluttering the home screen underneath.",
+      "Home revolves around checking off the habits you've set and pushing the daily score as high as you can. The Today tab centers that score, with streak, habits, done, and remaining underneath so progress is obvious the moment you open the app.",
     ),
   },
   {
@@ -141,15 +181,15 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
     rounded: true,
     items: [
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.27.png",
+        "habits-tab.png",
         "PRIMAL Habits tab — Remaining, Tomorrow's Habits, and Not Today",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.31.png",
+        "messages-tab.png",
         "PRIMAL Messages tab — empty state and Notifications",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.34.png",
+        "insights-tab.png",
         "PRIMAL Insights — Smart Insights, score summary, and review",
       ),
     ],
@@ -164,15 +204,15 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
     rounded: true,
     items: [
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.39.png",
+        "awards-badges.png",
         "PRIMAL Awards — Getting Started and Streak hexagonal badges",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.47.png",
+        "settings-appearance.png",
         "PRIMAL Settings — Pro upgrade card and appearance color picker",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.52.png",
+        "settings-permissions.png",
         "PRIMAL Settings — permissions, Apple Health, privacy, and legal",
       ),
     ],
@@ -187,15 +227,15 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
     rounded: true,
     items: [
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.34.59.png",
+        "profile-privacy.png",
         "PRIMAL profile — stats, friend privacy toggles, sign out, and delete account",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.35.10.png",
+        "today-month-calendar.png",
         "PRIMAL Today tab month calendar with streak stats",
       ),
       still(
-        "Simulator_Screenshot_-_iPhone_17_-_2026-09-19_at_17.35.20.png",
+        "new-habit-editor.png",
         "PRIMAL New habit — category, icon, color, target slider, and repeat days",
       ),
     ],
