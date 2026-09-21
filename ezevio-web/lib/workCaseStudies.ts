@@ -14,7 +14,11 @@ export type WorkCaseMediaCaption = {
 };
 
 export type WorkCaseBodyItem =
-  | ({ type: "media-full" } & WorkCaseStill & { caption?: WorkCaseMediaCaption })
+  | ({ type: "media-full" } & WorkCaseStill & {
+      caption?: WorkCaseMediaCaption;
+      /** White mat slightly larger than the asset — reads as a border on black pages. */
+      whiteCard?: boolean;
+    })
   | {
       type: "media-half";
       left: WorkCaseStill;
@@ -23,6 +27,8 @@ export type WorkCaseBodyItem =
       caption?: WorkCaseMediaCaption;
       /** Tighter phone stills (natural height, not full-column portraits). */
       compact?: boolean;
+      /** White mat slightly larger than each still — reads as a border on black pages. */
+      whiteCard?: boolean;
     }
   | {
       type: "media-triple";
@@ -33,6 +39,8 @@ export type WorkCaseBodyItem =
       caption?: WorkCaseMediaCaption;
       /** Soft phone-style corners on each still (app screenshots). */
       rounded?: boolean;
+      /** White mat slightly larger than each still — reads as a border on black pages. */
+      whiteCard?: boolean;
     }
   | {
       type: "split";
@@ -84,10 +92,19 @@ function wCap(
   };
 }
 
+function thStill(file: string, alt: string) {
+  return { src: `${TH}/${file}`, alt };
+}
+
+function gaStill(file: string, alt: string) {
+  return { src: `${GA}/${file}`, alt };
+}
+
 const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-full",
-    src: `${TH}/homepage-hero-search.png`,
+    whiteCard: true,
+    src: `${TH}/hero-section.png`,
     alt: "Tathor homepage hero — chrome wordmark and competitor search field",
     caption: wCap(
       "Hero",
@@ -95,85 +112,324 @@ const TATHOR_CASE_BODY: WorkCaseBodyItem[] = [
     ),
   },
   {
-    type: "media-half",
-    left: {
-      src: `${TH}/product-suite.png`,
-      alt: "Tathor Product Suite — three cards for core tool, Complete Profiles, and API",
-    },
-    right: {
-      src: `${TH}/agents-processing-overview.png`,
-      alt: "Tathor agents processing and export checklist",
-    },
+    type: "media-full",
+    whiteCard: true,
+    src: `${TH}/product-suite-section.png`,
+    alt: "Tathor Product Suite — three cards for core tool, Complete Profiles, and API",
     caption: wCap(
       "Product Suite",
       "Three cards lay out what Tathor actually is: the core tool, Complete Profiles (exported reports), and the API. Each card uses a faint wireframe-style illustration instead of a photo or icon set, which keeps the page feeling technical and restrained rather than like a typical SaaS landing page. Every card links straight to what it's describing — pricing, an example report, or the API docs.",
-      "After a search, Tathor Agents process in parallel with live status and time estimates — a real look at the product working, not a staged result. When processing finishes, exports list business data, social links, and email contacts, each marked as exported.",
     ),
   },
   {
     type: "media-half",
+    whiteCard: true,
     left: {
-      src: `${TH}/api-javascript-sample.png`,
-      alt: "Tathor Build with API — live JavaScript, Python, and cURL code samples",
+      src: `${TH}/stay-ahead-section-1.png`,
+      alt: "Tathor Stay ahead — agents processing and Complete Profiles export",
     },
     right: {
-      src: `${TH}/news-listing.png`,
-      alt: "Tathor Latest News — press-style entries with halftone imagery",
+      src: `${TH}/build-with-api-section-2.png`,
+      alt: "Tathor Build with API — live JavaScript, Python, and cURL code samples",
     },
     caption: wCap(
-      "Build with API & Latest News",
+      "Stay ahead & Build with API",
+      "After a search, Tathor Agents process in parallel with live status and time estimates — a real look at the product working, not a staged result. When processing finishes, exports list business data, social links, and email contacts, each marked as exported.",
       "The API section shows a live code sample — JavaScript, Python, or cURL — hitting the analyze endpoint directly, with the request and response shape visible. Showing the real request instead of describing the API in prose is aimed at developers who want to see the shape of the data before reading anything else.",
-      "News entries use a grainy, halftone photo treatment instead of standard stock photography, which keeps the tone closer to a magazine or press piece than a typical blog roll. Each entry has a date, category, headline, and a one-line summary — kept short enough to scan the whole list quickly.",
     ),
   },
   {
     type: "media-half",
+    whiteCard: true,
     left: {
-      src: `${TH}/pricing-cards.png`,
+      src: `${TH}/latest-news-section-1.png`,
+      alt: "Tathor Latest News — press-style entries with halftone imagery",
+    },
+    right: {
+      src: `${TH}/latest-news-section-2.png`,
+      alt: "Tathor news article — Data Collection Best Practices for AI Systems",
+    },
+    caption: wCap(
+      "Latest News",
+      "News entries use a grainy, halftone photo treatment instead of standard stock photography, which keeps the tone closer to a magazine or press piece than a typical blog roll. Each entry has a date, category, headline, and a one-line summary — kept short enough to scan the whole list quickly.",
+      "Opening an article keeps the same type, spacing, and image treatment as the listing, so the news pages feel like part of the marketing site rather than a bolted-on blog template.",
+    ),
+  },
+  {
+    type: "media-half",
+    whiteCard: true,
+    left: {
+      src: `${TH}/pricing-plans-section-1.png`,
       alt: "Tathor Pricing Plans — Basic, Business, and Agency tiers",
     },
     right: {
-      src: `${TH}/plan-comparison-table.png`,
+      src: `${TH}/compare-plans-section-2.png`,
       alt: "Tathor Compare Plans — feature-by-feature plan comparison table",
     },
     caption: wCap(
       "Pricing & Compare Plans",
-      "Three tiers — Basic, Business, and Agency — laid out as cards with the Business tier marked \"Recommended.\" Each plan lists what's included underneath it, and a yearly billing toggle sits below the cards for anyone comparing monthly versus annual cost.",
-      "For anyone who wants more than the card summary, the Compare Plans table breaks every feature out row by row — database access, number of competitor analyses per month, AI scraping tier, data collection depth, PDF exports — so the difference between Basic, Business, and Agency is stated exactly, not implied.",
-    ),
-  },
-  {
-    type: "media-full",
-    src: `${TH}/dashboard.png`,
-    alt: "Tathor dashboard overview — recent research and competitive metrics",
-    caption: wCap(
-      "Dashboard",
-      "Logging in lands on an overview screen — \"Welcome back, [name]\" — with tabs for Overview, Intelligence, Projects, and Blind Spots. The main panel shows the most recent research entry and a Competitive Overview table: businesses tracked, active analyses, and plan usage. Layout and spacing were built to feel closer to an internal analytics tool than a typical consumer dashboard — dense, quiet, and built around the numbers rather than around illustration or color.",
+      "Three tiers — Basic, Business, and Agency — laid out as cards with the Business tier marked \"Recommended.\" Each plan lists what's included underneath it, so monthly cost and what's in the tier can be scanned without opening another page.",
+      "For anyone who wants more than the card summary, the Compare Plans table breaks every feature out row by row — database access, number of competitor analyses per month, AI scraping tier, data collection depth — so the difference between Basic, Business, and Agency is stated exactly, not implied.",
     ),
   },
   {
     type: "media-half",
+    whiteCard: true,
     left: {
-      src: `${TH}/integrations-api.png`,
-      alt: "Tathor Integrations — API key, base URL, auth header, and plan limits",
+      src: `${TH}/sign-in-section-1.png`,
+      alt: "Tathor sign in — email, Google, and Apple",
     },
     right: {
-      src: `${TH}/billing.png`,
+      src: `${TH}/sign-up-section-2.png`,
+      alt: "Tathor sign up — matching auth card",
+    },
+    caption: wCap(
+      "Sign in & Sign up",
+      "Sign in and Sign up are the same card, same type, same Google and Apple options — only the primary button swaps. That keeps auth from feeling like two products, and Firebase handles the actual Google sign-in behind it.",
+    ),
+  },
+  {
+    type: "media-half",
+    whiteCard: true,
+    left: {
+      src: `${TH}/privacy-policy-1.png`,
+      alt: "Tathor Privacy Policy",
+    },
+    right: {
+      src: `${TH}/tos-section-2.png`,
+      alt: "Tathor Terms of Service",
+    },
+    caption: wCap(
+      "Privacy & Terms",
+      "Privacy and Terms sit in the same legal layout as the rest of the marketing site — same type, same black field — so they read as part of the product instead of a generic template dropped in at the end.",
+    ),
+  },
+  {
+    type: "media-half",
+    whiteCard: true,
+    left: {
+      src: `${TH}/dashboard-home-1.png`,
+      alt: "Tathor dashboard Overview — Competitive Overview metrics",
+    },
+    right: {
+      src: `${TH}/home-start-research-2.png`,
+      alt: "Tathor dashboard Intelligence — New research modal",
+    },
+    caption: wCap(
+      "Dashboard",
+      "Logging in lands on Overview — \"Welcome back\" — with tabs for Overview, Intelligence, Projects, and Blind Spots. The Competitive Overview table tracks businesses, active analyses, and plan usage. Layout and spacing were built to feel closer to an internal analytics tool than a typical consumer dashboard.",
+      "Intelligence opens the New research flow in place: company, domain, optional notes, then Start research. Same chrome, same density — starting an analysis doesn't send someone to a different product.",
+    ),
+  },
+  {
+    type: "media-half",
+    whiteCard: true,
+    left: {
+      src: `${TH}/integration-section-1.png`,
+      alt: "Tathor Integrations — available Slack, HubSpot, Mailchimp, Salesforce, Asana, Notion",
+    },
+    right: {
+      src: `${TH}/integrations-section-api-2.png`,
+      alt: "Tathor Integrations API — API key, base URL, and auth header",
+    },
+    caption: wCap(
+      "Integrations",
+      "The Available tab lists the connectors — Slack, HubSpot, Mailchimp, Salesforce, Asana, Notion — grouped by Communication, CRM, Marketing, and Productivity, so someone can see what plugs in before they generate a key.",
+      "The API tab stays in the same Integrations page: plan badge, create a key, base URL, and the exact Authorization header. Nothing here is abstracted behind a separate developer portal.",
+    ),
+  },
+  {
+    type: "media-half",
+    whiteCard: true,
+    left: {
+      src: `${TH}/profile-section-1.png`,
+      alt: "Tathor Profile Account — display name, email, and password",
+    },
+    right: {
+      src: `${TH}/billing-section-2.png`,
       alt: "Tathor Profile Billing — plan upgrades and usage analytics",
     },
     caption: wCap(
-      "Integrations & Billing",
-      "The Integrations page handles API access directly inside the dashboard — generating and viewing an API key, the base URL, and the exact authorization header format, plus a plans-and-limits table showing rate limits by tier. Nothing here is abstracted behind a separate developer portal; a user on a paid plan can get their key and see their limits without leaving the app.",
-      "Billing sits under Profile, with the three plans shown again as upgrade cards and the current plan marked as active. Below that, a small analytics section shows research projects created and total days tracked, with a usage chart underneath. Stripe handles the billing itself — plan changes, invoicing, and payment method updates all run through it, so the dashboard only needs to reflect the current state, not manage the transaction.",
+      "Profile & Billing",
+      "Account holds display name, email, and password under the same Profile chrome as Notifications, Appearance, and Billing — so account settings don't live on a different-looking page from the rest of the app.",
+      "Billing shows the three plans as upgrade cards with the current plan marked, plus a small analytics strip for research projects and days tracked. Stripe handles the transaction itself; the dashboard only reflects the current state.",
+    ),
+  },
+  {
+    type: "media-half",
+    whiteCard: true,
+    left: {
+      src: `${TH}/api-section-1.png`,
+      alt: "Tathor API Reference — REST docs overview and authentication",
+    },
+    right: {
+      src: `${TH}/api-section-2.png`,
+      alt: "Tathor API docs search — popular endpoint searches",
+    },
+    caption: wCap(
+      "API docs",
+      "The API reference is a full docs site — overview, authentication, endpoints, webhooks, rate limits — with the analyze base URL shown in the body so a developer can start from the real host, not a placeholder.",
+      "Search sits on top of those same docs: popular searches jump to Authentication, Analyze, Profiles, Webhooks, Error Handling, and Rate Limits, so the reference is usable without scrolling the sidebar first.",
+    ),
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-hero.png", "Tathor mobile site — chrome wordmark hero"),
+      thStill("mobile-product-suite.png", "Tathor mobile site — Product Suite card"),
+      thStill(
+        "mobile-complete-profiles.png",
+        "Tathor mobile site — Complete Profiles card",
+      ),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-api-card.png", "Tathor mobile site — API product card"),
+      thStill("mobile-stay-ahead.png", "Tathor mobile site — Stay ahead section"),
+      thStill(
+        "mobile-export-profiles.png",
+        "Tathor mobile site — Export with Complete Profiles",
+      ),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-build-with-api.png", "Tathor mobile site — Build with API"),
+      thStill("mobile-latest-news.png", "Tathor mobile site — Latest News listing"),
+      thStill("mobile-nav-menu.png", "Tathor mobile site — navigation menu"),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-pricing.png", "Tathor mobile site — Pricing Plans"),
+      thStill("mobile-compare-plans.png", "Tathor mobile site — Compare Plans"),
+      thStill("mobile-faq.png", "Tathor mobile site — Common Questions"),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-api-docs.png", "Tathor mobile API Reference"),
+      thStill("mobile-api-nav.png", "Tathor mobile API docs navigation"),
+      thStill("mobile-api-search.png", "Tathor mobile API docs search"),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill(
+        "mobile-latest-news-2.png",
+        "Tathor mobile site — Latest News article card",
+      ),
+      thStill(
+        "mobile-news-article.png",
+        "Tathor mobile site — news article page",
+      ),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-privacy.png", "Tathor mobile Privacy Policy"),
+      thStill("mobile-terms.png", "Tathor mobile Terms of Service"),
+      thStill("mobile-cookies.png", "Tathor mobile Cookie Policy"),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-dashboard-home.png", "Tathor mobile dashboard — Overview"),
+      thStill(
+        "mobile-new-research.png",
+        "Tathor mobile dashboard — New research",
+      ),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill(
+        "mobile-integrations-api.png",
+        "Tathor mobile Integrations — API tab",
+      ),
+      thStill("mobile-create-api-key.png", "Tathor mobile — Create API Key"),
+      thStill(
+        "mobile-integrations-usage.png",
+        "Tathor mobile Integrations — Usage",
+      ),
+    ],
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      thStill("mobile-profile-account.png", "Tathor mobile Profile — Account"),
+      thStill(
+        "mobile-profile-management.png",
+        "Tathor mobile Profile — account management",
+      ),
+      thStill("mobile-profile-billing.png", "Tathor mobile Profile — Billing"),
+    ],
+  },
+  {
+    type: "split",
+    heading: "Mobile Optimization",
+    body: "We treat the phone as the same product as the desktop — not a compressed leftover. The chrome wordmark, type, and black field hold at this width: sections stack, the nav becomes a menu, and every surface from the hero through pricing, API docs, legal, and the dashboard is designed for a thumb rather than squeezed in after. Someone opening tathor.com or the app on a phone gets the same brand and the same path as someone on a laptop.",
+    serviceRevealStep: 2,
+  },
+  {
+    type: "media-triple",
+    whiteCard: true,
+    items: [
+      {
+        src: `${TH}/website-design-1.svg`,
+        alt: "Tathor product illustration — line-drawn T mark",
+      },
+      {
+        src: `${TH}/website-design-2.svg`,
+        alt: "Tathor product illustration — Complete Profiles document",
+      },
+      {
+        src: `${TH}/website-design-3.svg`,
+        alt: "Tathor product illustration — API browser window",
+      },
+    ],
+    caption: wCap(
+      "Website design",
+      "These three line drawings are the illustrations on the Product Suite cards, in the same order: the T mark for the core tool, the document for Complete Profiles, and the browser window for the API. They were drawn as a set so the marketing site stays in one visual language instead of mixing icon packs.",
     ),
   },
   {
     type: "media-full",
-    src: `${TH}/stripe-checkout.png`,
-    alt: "Tathor Stripe checkout — Business plan summary and payment form",
+    whiteCard: true,
+    src: `${TH}/website-design-hero-logo.png`,
+    alt: "Tathor hero wordmark — chrome TATHOR logotype",
     caption: wCap(
-      "Payment Wall",
-      "Checkout is a split screen: plan and price on the left in black — Subscribe to TATHOR BUSINESS at $14.99/month — and Stripe's own payment form on the right, with Apple Pay, Link, and card entry. This is Stripe's hosted checkout, not a custom-built form, so less code to maintain and a payment flow people may already recognize from other products.",
+      "Hero logo design",
+      "The chrome TATHOR wordmark on the homepage went through several rounds before this version. Early passes were too flat, too heavy, or too close to a generic metal effect — this one is the cut that holds up at hero scale: brushed edges, a real highlight, and enough contrast to read as an entrance without competing with the search field underneath it.",
+    ),
+  },
+  {
+    type: "media-full",
+    whiteCard: true,
+    src: `${TH}/ad-creative-banner.svg`,
+    alt: "Tathor ad banner — outlined wordmark",
+    caption: wCap(
+      "Ad creative",
+      "A banner built around the outlined TATHOR wordmark — same mark language as the product suite illustrations, quiet enough to run as a brand unit without extra campaign copy on top of it.",
     ),
   },
   {
@@ -326,6 +582,53 @@ const GETACED_CASE_BODY: WorkCaseBodyItem[] = [
       "Legal & expectations",
       "Privacy and Terms are written in plain language and formatted like the rest of the site, so they're actually readable before someone connects an account or enters a card.",
     ),
+  },
+  {
+    type: "media-triple",
+    items: [
+      gaStill("mobile-hero.png", "GETACED mobile site — Stay one step ahead hero"),
+      gaStill(
+        "mobile-how-it-works.png",
+        "GETACED mobile site — Nothing to install, just sign in",
+      ),
+      gaStill("mobile-four-steps.png", "GETACED mobile site — Four steps section"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      gaStill(
+        "mobile-four-steps-continued.png",
+        "GETACED mobile site — Four steps continued",
+      ),
+      gaStill(
+        "mobile-built-by-students.png",
+        "GETACED mobile site — Built by students",
+      ),
+      gaStill("mobile-reviews.png", "GETACED mobile site — student reviews"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      gaStill("mobile-faq.png", "GETACED mobile site — FAQ"),
+      gaStill("mobile-cta.png", "GETACED mobile site — Ready to get aced CTA"),
+      gaStill("mobile-nav-menu.png", "GETACED mobile site — navigation menu"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      gaStill("mobile-privacy.png", "GETACED mobile Privacy Notice"),
+      gaStill("mobile-terms.png", "GETACED mobile Terms of Service"),
+      gaStill("mobile-sign-in.png", "GETACED mobile sign in"),
+    ],
+  },
+  {
+    type: "split",
+    heading: "Mobile Optimization",
+    body: "We treat the phone site as the same product as the desktop one — not a stripped-down leftover. The mascot, type, and purple field hold at this width: sections stack, the nav becomes a menu, and every page from the hero through how it works, reviews, legal, and sign-in is designed for a thumb rather than squeezed in after. Someone opening GETACED on a phone gets the same brand and the same path as someone on a laptop.",
+    serviceRevealStep: 2,
   },
   {
     type: "split",

@@ -1146,6 +1146,24 @@ section.projects .project [data-project-title] a:hover {
   object-fit: contain;
 }
 
+/* Hairline so black-on-black stills read against the page — not a padded card. */
+.work-case__media-section figure.work-case__figure--white-card,
+.work-case__media-pair__cell figure.work-case__figure--white-card,
+.work-case__media-triple__cell figure.work-case__figure--white-card {
+  background: transparent;
+  padding: 0 !important;
+  border: 1px solid #ffffff;
+  overflow: hidden;
+}
+
+.work-case__media-section figure.work-case__figure--white-card .work-case__img,
+.work-case__media-pair__cell figure.work-case__figure--white-card .work-case__img,
+.work-case__media-triple__cell figure.work-case__figure--white-card .work-case__img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .work-case__media-caption-heading {
   margin-top: 44px;
 }

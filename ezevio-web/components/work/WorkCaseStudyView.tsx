@@ -36,14 +36,16 @@ type Linkify = (text: string) => ReactNode;
 function CaseStill({
   still,
   rounded = false,
+  whiteCard = false,
 }: {
   still?: WorkCaseStill;
   rounded?: boolean;
+  whiteCard?: boolean;
 }) {
   const isAsset = Boolean(still?.src);
   return (
     <figure
-      className={`work-case__figure${isAsset ? " work-case__figure--screenshot" : ""}${rounded ? " work-case__figure--phone" : ""}`}
+      className={`work-case__figure${isAsset ? " work-case__figure--screenshot" : ""}${rounded ? " work-case__figure--phone" : ""}${whiteCard ? " work-case__figure--white-card" : ""}`}
     >
       {/* eslint-disable-next-line @next/next/no-img-element -- case study assets */}
       <img
@@ -92,6 +94,7 @@ function MediaRowTwo({
   dataAos,
   caption,
   compact = false,
+  whiteCard = false,
   linkify,
 }: {
   left?: WorkCaseStill;
@@ -99,6 +102,7 @@ function MediaRowTwo({
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
   compact?: boolean;
+  whiteCard?: boolean;
   linkify: Linkify;
 }) {
   return (
@@ -115,10 +119,10 @@ function MediaRowTwo({
           }
         >
           <div className="work-case__media-pair__cell">
-            <CaseStill still={left} />
+            <CaseStill still={left} whiteCard={whiteCard} />
           </div>
           <div className="work-case__media-pair__cell">
-            <CaseStill still={right} />
+            <CaseStill still={right} whiteCard={whiteCard} />
           </div>
         </div>
       </div>
@@ -132,6 +136,7 @@ function MediaRowTriple({
   dataAos,
   caption,
   rounded = false,
+  whiteCard = false,
   linkify,
 }: {
   items:
@@ -140,6 +145,7 @@ function MediaRowTriple({
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
   rounded?: boolean;
+  whiteCard?: boolean;
   linkify: Linkify;
 }) {
   return (
@@ -151,7 +157,7 @@ function MediaRowTriple({
         <div className="work-case__media-triple">
           {items.map((still) => (
             <div key={still.src} className="work-case__media-triple__cell">
-              <CaseStill still={still} rounded={rounded} />
+              <CaseStill still={still} rounded={rounded} whiteCard={whiteCard} />
             </div>
           ))}
         </div>
@@ -166,11 +172,13 @@ function MediaRowFull({
   dataAos,
   caption,
   linkify,
+  whiteCard = false,
 }: {
   still?: WorkCaseStill;
   dataAos?: string;
   caption?: WorkCaseMediaCaption;
   linkify?: Linkify;
+  whiteCard?: boolean;
 }) {
   return (
     <section
@@ -178,7 +186,7 @@ function MediaRowFull({
       data-aos={dataAos}
     >
       <div className={MEDIA_COL}>
-        <CaseStill still={still} />
+        <CaseStill still={still} whiteCard={whiteCard} />
       </div>
       {caption && linkify ? (
         <MediaCaptionBlock caption={caption} linkify={linkify} />
@@ -227,6 +235,7 @@ function CaseBodyList({
               dataAos={dataAos}
               caption={item.caption}
               compact={item.compact}
+              whiteCard={item.whiteCard}
               linkify={linkify}
             />
           );
@@ -239,6 +248,7 @@ function CaseBodyList({
               dataAos={dataAos}
               caption={item.caption}
               rounded={item.rounded}
+              whiteCard={item.whiteCard}
               linkify={linkify}
             />
           );
@@ -249,6 +259,7 @@ function CaseBodyList({
             still={{ src: item.src, alt: item.alt }}
             dataAos={dataAos}
             caption={item.caption}
+            whiteCard={item.whiteCard}
             linkify={linkify}
           />
         );

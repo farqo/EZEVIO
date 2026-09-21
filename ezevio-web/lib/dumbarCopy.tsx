@@ -250,18 +250,18 @@ export const WORK_TILES: {
     cardOverlayLarge: true,
   },
   {
-    href: "/work/getaced",
-    title: "GETACED",
-    caption: "GETACED — (Web, Web app, Logo design, Brand design, API, Software)",
-    cardImage: "/project-work-card-2.svg",
-    cardOverlay: "/work/getaced/logo.svg",
-  },
-  {
     href: "/work/tathor",
     title: "TATHOR",
     caption: "TATHOR — (Web, Web app, Logo design, Brand design, API, Software)",
     cardImage: "/project-work-card-3.svg",
     cardOverlay: "/work/tathor/logo.svg",
+  },
+  {
+    href: "/work/getaced",
+    title: "GETACED",
+    caption: "GETACED — (Web, Web app, Logo design, Brand design, API, Software)",
+    cardImage: "/project-work-card-2.svg",
+    cardOverlay: "/work/getaced/logo.svg",
   },
   {
     href: "/work/nuerlo",

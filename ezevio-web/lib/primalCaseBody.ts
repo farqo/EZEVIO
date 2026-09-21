@@ -17,7 +17,7 @@ function still(file: string, alt: string) {
   return { src: `${PM}/${file}`, alt };
 }
 
-/** Full landing → site pages → ads → app appearances → app screens. */
+/** Full landing → forms → legal → mobile site → ads → app appearances → app screens. */
 export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
   {
     type: "media-full",
@@ -36,12 +36,21 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
       alt: "PRIMAL waitlist page",
     },
     right: {
-      src: `${PM}/landing-download.png`,
-      alt: "PRIMAL download page — App Store and Google Play",
+      src: `${PM}/landing-have-questions.png`,
+      alt: "PRIMAL Have Questions — bug report and support form",
     },
     caption: wCap(
-      "Waitlist & download",
-      "Separate waitlist and download surfaces keep the path clear — join before launch, or jump straight to the stores once the app is live — without crowding either CTA into the main marketing scroll.",
+      "Waitlist & have questions",
+      "Both pages are Google Form embeds — join the waitlist before launch, or send a bug report or question — so those two intake flows didn't need a custom form stack. Same pattern, two jobs: collect emails, collect support.",
+    ),
+  },
+  {
+    type: "media-full",
+    src: `${PM}/landing-download.png`,
+    alt: "PRIMAL download page — App Store and Google Play",
+    caption: wCap(
+      "Download",
+      "A dedicated download surface keeps the store path clear — jump to the App Store or scan the QR — without crowding that CTA into the waitlist or the main marketing scroll.",
     ),
   },
   {
@@ -58,6 +67,63 @@ export const PRIMAL_CASE_BODY: WorkCaseBodyItem[] = [
       "Privacy & terms",
       "We went through several versions of Privacy and Terms while building the app — updating the language as features landed so the legal pages stay current and actually pair with what PRIMAL does, instead of drifting into generic boilerplate.",
     ),
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("mobile-hero.png", "PRIMAL mobile site — hero and App Store CTA"),
+      still(
+        "mobile-one-list-one-score.png",
+        "PRIMAL mobile site — One list. One score. section",
+      ),
+      still("mobile-today.png", "PRIMAL mobile site — Today section"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("mobile-features.png", "PRIMAL mobile site — Features section"),
+      still(
+        "mobile-choose-your-style.png",
+        "PRIMAL mobile site — Choose your style",
+      ),
+      still("mobile-pro-pricing.png", "PRIMAL mobile site — Pro pricing card"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("mobile-cta.png", "PRIMAL mobile site — Ready to be PRIMAL CTA"),
+      still("mobile-nav-menu.png", "PRIMAL mobile site — navigation menu"),
+      still(
+        "mobile-download.png",
+        "PRIMAL mobile site — Download PRIMAL with QR",
+      ),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("mobile-privacy.png", "PRIMAL mobile privacy policy"),
+      still("mobile-terms.png", "PRIMAL mobile terms of service"),
+      still("mobile-cookies.png", "PRIMAL mobile website and cookies page"),
+    ],
+  },
+  {
+    type: "media-triple",
+    items: [
+      still("mobile-waitlist.png", "PRIMAL mobile waitlist form"),
+      still(
+        "mobile-have-questions.png",
+        "PRIMAL mobile Have Questions form",
+      ),
+    ],
+  },
+  {
+    type: "split",
+    heading: "Mobile Optimization",
+    body: "We treat the phone site as the same product as the desktop one — not a stripped-down leftover. Type, color, and the bull mark hold at this width: sections stack, the nav becomes a menu, and every page from the hero through waitlist, legal, and Have Questions is designed for a thumb rather than squeezed in after. Someone landing from Instagram or a text gets the same brand and the same path as someone on a laptop.",
+    serviceRevealStep: 2,
   },
   {
     type: "media-full",
